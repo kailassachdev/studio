@@ -17,39 +17,69 @@ interface PortfolioItem {
   liveLink?: string;
   repoLink?: string;
   dataAiHint?: string;
+  dates?: string;
 }
 
 const portfolioItems: PortfolioItem[] = [
   {
     id: "1",
-    title: "E-commerce Platform",
-    description: "A full-featured online store with secure payments and inventory management.",
+    title: "AI Personal Protection Detection",
+    description: "Used object detection for personal safety analysis.",
     imageUrl: "https://placehold.co/600x400.png",
-    dataAiHint: "online store",
-    tags: ["React", "Node.js", "Stripe"],
-    longDescription: "This e-commerce platform was built from the ground up using modern web technologies. It includes features like user authentication, product listings, shopping cart, Stripe integration for payments, and an admin dashboard for managing products and orders. The focus was on creating a seamless and secure user experience.",
-    liveLink: "#",
-    repoLink: "#",
+    dataAiHint: "safety AI",
+    tags: ["OpenCV", "TensorFlow"],
+    longDescription: "Developed an AI system using OpenCV and TensorFlow for object detection, specifically focusing on personal safety equipment analysis in various environments.",
+    liveLink: undefined, // No link provided
+    repoLink: undefined, // No link provided
+    dates: "Feb 2023 - Mar 2023",
   },
   {
     id: "2",
-    title: "Data Visualization Dashboard",
-    description: "Interactive dashboard displaying complex datasets with D3.js.",
+    title: "Library Management System",
+    description: "Efficient and searchable system designed using Java and DSA concepts.",
     imageUrl: "https://placehold.co/600x400.png",
-    dataAiHint: "dashboard charts",
-    tags: ["D3.js", "JavaScript", "API"],
-    longDescription: "This project involved creating an interactive dashboard to visualize complex financial data. Using D3.js, various chart types were implemented to provide insightful analytics. The dashboard fetches real-time data from an API and allows users to customize views and reports.",
-    liveLink: "#",
+    dataAiHint: "library software",
+    tags: ["Java", "DSA"],
+    longDescription: "Created a comprehensive library management system focusing on efficiency and searchability. The system was designed using core Java principles and Data Structures & Algorithms (DSA) concepts for optimal performance.",
+    liveLink: undefined,
+    repoLink: undefined,
+    dates: "Nov 2023",
   },
   {
     id: "3",
-    title: "Mobile Fitness App",
-    description: "Cross-platform app for tracking workouts and nutrition.",
+    title: "AI Sign Language Detection",
+    description: "Trained a deep learning model to recognize static ISL signs for real-time gesture translation.",
     imageUrl: "https://placehold.co/600x400.png",
-    dataAiHint: "mobile app",
-    tags: ["React Native", "Firebase", "HealthKit"],
-    longDescription: "A mobile application designed to help users track their fitness goals, log workouts, and monitor nutrition. Built with React Native for cross-platform compatibility, it integrates with native health APIs (HealthKit/Google Fit) and uses Firebase for backend services and real-time data synchronization.",
-    repoLink: "#",
+    dataAiHint: "accessibility AI",
+    tags: ["OpenCV", "ML", "DL"],
+    longDescription: "This project involved training a deep learning model with OpenCV to recognize static Indian Sign Language (ISL) signs, enabling real-time gesture translation to improve accessibility.",
+    liveLink: undefined,
+    repoLink: undefined,
+    dates: "Dec 2024 - Mar 2025",
+  },
+   {
+    id: "4",
+    title: "AI Garbage Detection",
+    description: "Built a waste image classifier using machine learning and vision algorithms to promote environmental sustainability.",
+    imageUrl: "https://placehold.co/600x400.png",
+    dataAiHint: "environment AI",
+    tags: ["Computer Vision", "PyTorch"],
+    longDescription: "Developed a waste image classifier leveraging machine learning and computer vision algorithms with PyTorch. The system aims to promote environmental sustainability by automating garbage detection and classification.",
+    liveLink: undefined,
+    repoLink: undefined,
+    dates: "Feb 2024 - Apr 2025",
+  },
+  {
+    id: "5",
+    title: "AI Traffic Density and Violation Detection System",
+    description: "Ongoing project to develop an AI system for traffic monitoring.",
+    imageUrl: "https://placehold.co/600x400.png",
+    dataAiHint: "smart city",
+    tags: ["Arduino", "ML", "DL"],
+    longDescription: "Currently building an AI-powered system using Arduino, Machine Learning (ML), and Deep Learning (DL) for real-time traffic density analysis and violation detection.",
+    liveLink: undefined,
+    repoLink: undefined,
+    dates: "Apr 2025 - Present",
   },
 ];
 
@@ -57,8 +87,8 @@ export default function InteractivePortfolioSection() {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
   return (
-    <section id="portfolio" className="py-16">
-      <h2 className="text-4xl font-bold text-center mb-12">My Work</h2>
+    <section id="projects" className="py-16">
+      <h2 className="text-4xl font-bold text-center mb-12">Projects</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {portfolioItems.map((item, index) => (
           <Card 
@@ -71,14 +101,16 @@ export default function InteractivePortfolioSection() {
                 <Image 
                   src={item.imageUrl} 
                   alt={item.title} 
-                  layout="fill" 
-                  objectFit="cover" 
+                  fill // Replaced layout="fill" and objectFit="cover" with fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Added sizes for responsiveness
+                  style={{ objectFit: 'cover' }} // Added style for objectFit
                   className="rounded-t-md"
                   data-ai-hint={item.dataAiHint}
                 />
               </div>
               <CardTitle className="text-2xl">{item.title}</CardTitle>
-              <CardDescription className="text-card-foreground/80">{item.description}</CardDescription>
+              {item.dates && <CardDescription className="text-sm text-muted-foreground">{item.dates}</CardDescription>}
+              <CardDescription className="text-card-foreground/80 pt-1">{item.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-grow">
               <div className="flex flex-wrap gap-2">
@@ -102,13 +134,15 @@ export default function InteractivePortfolioSection() {
                 <Image 
                   src={selectedItem.imageUrl} 
                   alt={selectedItem.title} 
-                  layout="fill" 
-                  objectFit="cover" 
+                  fill
+                  sizes="(max-width: 625px) 100vw, 625px"
+                  style={{ objectFit: 'cover' }}
                   className="rounded-t-lg"
                   data-ai-hint={selectedItem.dataAiHint}
                 />
               </div>
               <DialogTitle className="text-3xl text-primary">{selectedItem.title}</DialogTitle>
+               {selectedItem.dates && <p className="text-sm text-muted-foreground -mt-1">{selectedItem.dates}</p>}
               <DialogDescription className="text-muted-foreground pt-2">
                 {selectedItem.longDescription}
               </DialogDescription>

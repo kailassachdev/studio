@@ -6,15 +6,15 @@ export default function HeroSection() {
   return (
     <section id="hero" className="text-center py-20 md:py-32">
       <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
-        Illuminate Your <span className="text-primary">Digital Presence</span>
+        Kailas <span className="text-primary">Sachdev</span>
       </h1>
       <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-        Luminous Persona helps you craft a narrative that captivates and inspires. Showcase your journey, your work, and connect with your audience like never before.
+        Software Engineer skilled in designing, developing, and optimizing scalable applications. Strong in problem-solving, coding, and software architecture. Experienced with databases, algorithms, and modern frameworks. Committed to continuous learning and innovation.
       </p>
       <div className="space-x-4">
         <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-          <Link href="#portfolio">
-            View My Work
+          <Link href="#projects">
+            View My Projects
           </Link>
         </Button>
         <Button size="lg" variant="outline" asChild className="border-accent text-accent hover:bg-accent/10">

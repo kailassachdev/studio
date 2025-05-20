@@ -16,8 +16,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, Mail, Phone, MapPin, Linkedin, Briefcase } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(50, "Name must be 50 characters or less."),
@@ -27,19 +28,38 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-// Mock server action
 async function submitContactForm(data: ContactFormValues): Promise<{ success: boolean; message: string }> {
   console.log("Form data submitted:", data);
-  // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1500));
-  // Simulate random success/failure
   if (Math.random() > 0.2) {
-    return { success: true, message: "Your message has been sent successfully! We'll be in touch soon." };
+    return { success: true, message: "Your message has been sent successfully! I'll be in touch soon." };
   } else {
     return { success: false, message: "Something went wrong. Please try again later." };
   }
 }
 
+const contactDetails = [
+  {
+    icon: <Mail className="h-5 w-5 text-primary" />,
+    text: "kailassachdev@gmail.com",
+    href: "mailto:kailassachdev@gmail.com",
+  },
+  {
+    icon: <Phone className="h-5 w-5 text-primary" />,
+    text: "+91 6282288093",
+    href: "tel:+916282288093",
+  },
+  {
+    icon: <Linkedin className="h-5 w-5 text-primary" />,
+    text: "linkedin.com/in/kailassachdev",
+    href: "https://linkedin.com/in/kailassachdev",
+    target: "_blank",
+  },
+  {
+    icon: <MapPin className="h-5 w-5 text-primary" />,
+    text: "Ernakulam",
+  },
+];
 
 export default function ContactFormSection() {
   const { toast } = useToast();
@@ -88,11 +108,31 @@ export default function ContactFormSection() {
       <Card className="max-w-2xl mx-auto bg-card text-card-foreground shadow-xl">
         <CardHeader className="text-center">
           <CardTitle className="text-4xl font-bold">Get In Touch</CardTitle>
-          <CardDescription className="text-card-foreground/80">
-            Have a project in mind or just want to say hi? Fill out the form below.
+          <CardDescription className="text-card-foreground/80 mt-2">
+            Have a project in mind or just want to say hi? Fill out the form below or reach out directly.
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <div className="mb-8 space-y-4">
+            {contactDetails.map((detail, index) => (
+              <div key={index} className="flex items-center gap-3">
+                {detail.icon}
+                {detail.href ? (
+                  <a 
+                    href={detail.href} 
+                    target={detail.target || "_self"} 
+                    rel={detail.target ? "noopener noreferrer" : ""}
+                    className="text-card-foreground/90 hover:text-primary transition-colors"
+                  >
+                    {detail.text}
+                  </a>
+                ) : (
+                  <span className="text-card-foreground/90">{detail.text}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField

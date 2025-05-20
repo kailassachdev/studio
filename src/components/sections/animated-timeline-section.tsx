@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Briefcase, GraduationCap, Award } from "lucide-react";
+import { Briefcase, GraduationCap, Award, Users } from "lucide-react"; // Added Users
 
 interface TimelineEvent {
   id: string;
@@ -15,27 +15,35 @@ interface TimelineEvent {
 const timelineEvents: TimelineEvent[] = [
   {
     id: "1",
-    date: "2023 - Present",
-    title: "Lead Developer at Tech Solutions Inc.",
-    description: "Leading a team of 5 developers in creating innovative web solutions. Spearheaded the development of a major client portal, improving user engagement by 40%.",
-    icon: <Briefcase className="h-6 w-6 text-primary" />,
-    category: "Career",
+    date: "2022 - 2026",
+    title: "B. Tech, Computer Science & Engineering",
+    description: "Cochin University of Science and Technology, Kochi.",
+    icon: <GraduationCap className="h-6 w-6 text-primary" />,
+    category: "Education",
   },
   {
     id: "2",
-    date: "2022",
-    title: "Innovation Award Winner",
-    description: "Received the company-wide innovation award for a project that streamlined internal workflows, saving an estimated 200 hours per month.",
-    icon: <Award className="h-6 w-6 text-primary" />,
-    category: "Achievement",
+    date: "2021",
+    title: "Senior Secondary (XII), CBSE",
+    description: "The Greenhills Public School. Percentage: 87.00%.",
+    icon: <GraduationCap className="h-6 w-6 text-primary" />,
+    category: "Education",
   },
   {
     id: "3",
-    date: "2019 - 2023",
-    title: "B.S. in Computer Science, Stanford University",
-    description: "Graduated with honors, focusing on artificial intelligence and human-computer interaction. Active member of the coding club and contributor to open-source projects.",
+    date: "2019",
+    title: "Secondary (X), CBSE",
+    description: "Mount Tabor English School. Percentage: 92.00%.",
     icon: <GraduationCap className="h-6 w-6 text-primary" />,
     category: "Education",
+  },
+  {
+    id: "4",
+    date: "Present",
+    title: "President - IRES SEDS CUSAT",
+    description: "Led student chapter, organized workshops, outreach programs, and national-level space-tech events. Managed core team, built industry collaborations, and increased member engagement by 60%. Actively promoted STEM awareness.",
+    icon: <Award className="h-6 w-6 text-primary" />,
+    category: "Leadership & Extracurricular",
   },
 ];
 

@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Luminous Persona',
-  description: 'Craft your compelling personal story with Luminous Persona.',
+  title: 'Kailas Sachdev - Software Engineer',
+  description: 'Kailas Sachdev is a driven and curious individual with a strong passion for technology, innovation, and community impact.',
 };
 
 export default function RootLayout({
