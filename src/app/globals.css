@@ -112,8 +112,8 @@
 
 /* Twinkling star animation */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.7; transform: scale(1); } /* Increased base opacity and reduced scale variation */
-  50% { opacity: 1.0; transform: scale(1.2); }
+  0%, 100% { opacity: 0.8; transform: scale(1); } /* Increased base opacity */
+  50% { opacity: 1.0; transform: scale(1.3); } /* Increased max opacity and scale */
 }
 
 /* Flicker and Rise animation for "embers" */
@@ -123,12 +123,12 @@
     transform: translateY(20px) scale(0.5);
   }
   20% {
-    opacity: 0.9; /* More opaque embers */
-    transform: translateY(0px) scale(1.2);
+    opacity: 1.0; /* More opaque embers */
+    transform: translateY(0px) scale(1.3);
   }
   80% {
-    opacity: 0.8;
-    transform: translateY(-100px) scale(0.8);
+    opacity: 0.9;
+    transform: translateY(-100px) scale(0.9);
   }
   100% {
     opacity: 0;
@@ -150,79 +150,71 @@
 .interactive-bg-element::before { /* Stars */
   top: 10%;
   left: 5%;
-  animation: twinkle 5s infinite ease-in-out; /* Slightly faster */
+  animation: twinkle 4.5s infinite ease-in-out; /* Slightly faster */
   box-shadow:
-    /* Original stars, slightly brightened */
-    0 0 0 1px hsl(var(--accent) / 0.9), /* Base star */
-    15vw 10vh 0 1px hsl(var(--accent) / 0.8),
-    -10vw 20vh 0 2px hsl(var(--accent) / 0.95),
-    5vw -10vh 0 1px hsl(var(--accent) / 0.85),
-    25vw 5vh 0 2px hsl(var(--accent) / 0.7),
-    -20vw -15vh 0 1px hsl(var(--accent) / 0.9),
-    /* Increased number of stars significantly */
-    30vw 40vh 0 2px hsl(var(--accent) / 0.85), 45vw -5vh 0 1px hsl(var(--accent) / 0.75),
-    -35vw 30vh 0 1px hsl(var(--accent) / 0.95), 50vw 50vh 0 2px hsl(var(--accent) / 0.8),
-    -25vw -30vh 0 2px hsl(var(--accent) / 0.9), 60vw 10vh 0 1px hsl(var(--accent) / 0.7),
-    -40vw 55vh 0 2px hsl(var(--accent) / 0.8), 70vw -20vh 0 1px hsl(var(--accent) / 0.9),
-    10vw 60vh 0 2px hsl(var(--accent) / 0.75), -5vw 70vh 0 1px hsl(var(--accent) / 0.85),
-    80vw 30vh 0 2px hsl(var(--accent) / 0.9), 90vw 60vh 0 1px hsl(var(--accent) / 0.8),
-    5vw 80vh 0 2px hsl(var(--accent) / 0.7), 18vw 25vh 0 1px hsl(var(--accent) / 0.95),
-    -12vw 45vh 0 2px hsl(var(--accent) / 0.8), 33vw -25vh 0 1px hsl(var(--accent) / 0.7),
-    -48vw 15vh 0 2px hsl(var(--accent) / 0.9), 65vw 70vh 0 1px hsl(var(--accent) / 0.85),
-    22vw 90vh 0 2px hsl(var(--accent) / 0.75), -30vw 80vh 0 1px hsl(var(--accent) / 0.9),
-    /* Add even more for density */
-    5vw 15vh 0 1px hsl(var(--accent) / 0.8), -8vw 35vh 0 2px hsl(var(--accent) / 0.9),
-    28vw -8vh 0 1px hsl(var(--accent) / 0.75), -18vw -22vh 0 2px hsl(var(--accent) / 0.88),
-    40vw 65vh 0 1px hsl(var(--accent) / 0.82), -50vw 22vh 0 2px hsl(var(--accent) / 0.92),
-    12vw 75vh 0 1px hsl(var(--accent) / 0.78), -22vw 5vh 0 2px hsl(var(--accent) / 0.85),
-    37vw 10vh 0 1px hsl(var(--accent) / 0.93), -3vw -40vh 0 2px hsl(var(--accent) / 0.77);
+    /* Original stars, slightly brightened and more numerous */
+    0 0 0 1px hsl(var(--accent) / 0.95), /* Base star */
+    15vw 10vh 0 1px hsl(var(--accent) / 0.85), -10vw 20vh 0 2px hsl(var(--accent) / 1.0),
+    5vw -10vh 0 1px hsl(var(--accent) / 0.9), 25vw 5vh 0 2px hsl(var(--accent) / 0.75),
+    -20vw -15vh 0 1px hsl(var(--accent) / 0.95), 30vw 40vh 0 2px hsl(var(--accent) / 0.9),
+    45vw -5vh 0 1px hsl(var(--accent) / 0.8), -35vw 30vh 0 1px hsl(var(--accent) / 1.0),
+    50vw 50vh 0 2px hsl(var(--accent) / 0.85), -25vw -30vh 0 2px hsl(var(--accent) / 0.95),
+    60vw 10vh 0 1px hsl(var(--accent) / 0.75), -40vw 55vh 0 2px hsl(var(--accent) / 0.85),
+    70vw -20vh 0 1px hsl(var(--accent) / 0.95), 10vw 60vh 0 2px hsl(var(--accent) / 0.8),
+    -5vw 70vh 0 1px hsl(var(--accent) / 0.9), 80vw 30vh 0 2px hsl(var(--accent) / 0.95),
+    90vw 60vh 0 1px hsl(var(--accent) / 0.85), 5vw 80vh 0 2px hsl(var(--accent) / 0.75),
+    18vw 25vh 0 1px hsl(var(--accent) / 1.0), -12vw 45vh 0 2px hsl(var(--accent) / 0.85),
+    33vw -25vh 0 1px hsl(var(--accent) / 0.75), -48vw 15vh 0 2px hsl(var(--accent) / 0.95),
+    65vw 70vh 0 1px hsl(var(--accent) / 0.9), 22vw 90vh 0 2px hsl(var(--accent) / 0.8),
+    -30vw 80vh 0 1px hsl(var(--accent) / 0.95), 5vw 15vh 0 1px hsl(var(--accent) / 0.85),
+    -8vw 35vh 0 2px hsl(var(--accent) / 0.95), 28vw -8vh 0 1px hsl(var(--accent) / 0.8),
+    -18vw -22vh 0 2px hsl(var(--accent) / 0.9), 40vw 65vh 0 1px hsl(var(--accent) / 0.88),
+    -50vw 22vh 0 2px hsl(var(--accent) / 0.98), 12vw 75vh 0 1px hsl(var(--accent) / 0.82),
+    -22vw 5vh 0 2px hsl(var(--accent) / 0.9), 37vw 10vh 0 1px hsl(var(--accent) / 0.98),
+    -3vw -40vh 0 2px hsl(var(--accent) / 0.8);
 }
 
 .interactive-bg-element::after { /* Embers */
   top: 70%;
   left: 90%;
-  animation: flickerRise 4s infinite ease-in-out 0.2s; /* Slightly faster, adjusted delay */
+  animation: flickerRise 3.8s infinite ease-in-out 0.15s; /* Slightly faster, adjusted delay */
   box-shadow:
-    /* Original embers, slightly brightened */
-    0 0 0 2px hsl(30 100% 55% / 0.9), /* Base ember */
-    -10vw -10vh 0 2px hsl(10 100% 55% / 0.85),
-    15vw 10vh 0 3px hsl(40 100% 60% / 0.95),
-    -20vw 5vh 0 2px hsl(0 90% 60% / 0.8),
-    10vw -20vh 0 3px hsl(25 100% 55% / 0.85),
-    /* Increased number of embers significantly */
-    20vw 30vh 0 2px hsl(45 100% 60% / 0.95), -30vw 20vh 0 3px hsl(35 100% 50% / 0.9),
-    35vw -10vh 0 2px hsl(15 100% 50% / 0.8), -5vw 50vh 0 3px hsl(20 100% 52% / 0.95),
-    55vw 5vh 0 2px hsl(5 100% 58% / 0.75), -38vw -25vh 0 3px hsl(42 100% 53% / 0.9),
-    8vw 60vh 0 2px hsl(50 100% 57% / 0.95), -50vw 40vh 0 3px hsl(28 100% 55% / 0.8),
-    28vw 70vh 0 2px hsl(18 100% 50% / 0.9), -15vw 80vh 0 3px hsl(32 100% 58% / 0.85),
-    60vw 35vh 0 2px hsl(8 100% 53% / 0.75),
-    /* Add even more for density */
-    -2vw -5vh 0 2px hsl(22 100% 55% / 0.9), 13vw 20vh 0 3px hsl(48 100% 58% / 0.88),
-    -23vw 65vh 0 2px hsl(8 100% 52% / 0.97), 42vw -12vh 0 3px hsl(38 100% 57% / 0.8),
-    -7vw 33vh 0 2px hsl(26 100% 56% / 0.85), 17vw -28vh 0 3px hsl(43 100% 54% / 0.92),
-    -28vw 53vh 0 2px hsl(12 100% 50% / 0.95), 50vw 12vh 0 3px hsl(30 100% 55% / 0.85);
+    /* Original embers, brightened and more numerous */
+    0 0 0 2px hsl(30 100% 55% / 1.0), /* Base ember - more opaque */
+    -10vw -10vh 0 2px hsl(10 100% 55% / 0.9), 15vw 10vh 0 3px hsl(40 100% 60% / 1.0),
+    -20vw 5vh 0 2px hsl(0 90% 60% / 0.85), 10vw -20vh 0 3px hsl(25 100% 55% / 0.9),
+    20vw 30vh 0 2px hsl(45 100% 60% / 1.0), -30vw 20vh 0 3px hsl(35 100% 50% / 0.95),
+    35vw -10vh 0 2px hsl(15 100% 50% / 0.85), -5vw 50vh 0 3px hsl(20 100% 52% / 1.0),
+    55vw 5vh 0 2px hsl(5 100% 58% / 0.8), -38vw -25vh 0 3px hsl(42 100% 53% / 0.95),
+    8vw 60vh 0 2px hsl(50 100% 57% / 1.0), -50vw 40vh 0 3px hsl(28 100% 55% / 0.85),
+    28vw 70vh 0 2px hsl(18 100% 50% / 0.95), -15vw 80vh 0 3px hsl(32 100% 58% / 0.9),
+    60vw 35vh 0 2px hsl(8 100% 53% / 0.8), -2vw -5vh 0 2px hsl(22 100% 55% / 0.95),
+    13vw 20vh 0 3px hsl(48 100% 58% / 0.9), -23vw 65vh 0 2px hsl(8 100% 52% / 1.0),
+    42vw -12vh 0 3px hsl(38 100% 57% / 0.85), -7vw 33vh 0 2px hsl(26 100% 56% / 0.9),
+    17vw -28vh 0 3px hsl(43 100% 54% / 0.98), -28vw 53vh 0 2px hsl(12 100% 50% / 1.0),
+    50vw 12vh 0 3px hsl(30 100% 55% / 0.9);
 }
 
 
-/* Flaming Snake Styles - Restored and Refined */
+/* Flaming Snake Styles - Max Visibility Attempt */
 .flaming-snake {
   position: absolute;
   z-index: 1; /* Above parent's gradient, but below other page content */
-  width: 250px; 
-  height: 10px;  /* Increased height */
-  border-radius: 5px; /* Slightly larger radius for thicker snake */
-  opacity: 1; 
+  width: 200px; /* Adjusted width */
+  height: 12px;  /* Increased height for visibility */
+  border-radius: 6px;
+  opacity: 1; /* Default to fully opaque */
   will-change: transform, opacity;
+  /* Using very bright, distinct colors for maximum contrast */
   background: linear-gradient(90deg,
-    hsla(var(--accent), 0.95) 0%, /* Accent color (bright yellow) */
-    hsla(var(--primary) / 0.9) 60%,  /* Primary color (deep red) */
-    hsla(var(--primary) / 0.7) 85%, /* Fading primary */
-    hsla(var(--primary) / 0.4) 100% /* Fainter tail */
+    hsl(10, 100%, 55%) 0%, /* Bright, fiery orange-red */
+    hsl(30, 100%, 55%) 50%, /* Bright orange */
+    hsl(50, 100%, 55%) 100% /* Bright yellow */
   );
+  /* Simpler, bright shadow */
   box-shadow:
-    0 0 10px 4px hsla(var(--accent), 0.7), /* More prominent yellow glow */
-    0 0 18px 7px hsla(var(--primary) / 0.5), /* More prominent red glow */
-    0 0 25px 12px hsla(30, 100%, 50%, 0.25); /* Softer, wider orange ember glow */
+    0 0 10px 4px hsl(30, 100%, 50% / 0.8), /* Orange glow */
+    0 0 20px 8px hsl(50, 100%, 50% / 0.5);  /* Wider yellow glow */
 }
 
 .snake-1 {
@@ -233,21 +225,22 @@
   animation: moveSnake2 25s infinite ease-in-out 2.5s; /* Staggered start */
 }
 
+/* Animations ensuring full opacity for most of the duration */
 @keyframes moveSnake1 {
-  0% { transform: translate(10vw, 80vh) rotate(-15deg) scale(0.8); opacity: 0.9; } /* Increased start opacity */
+  0% { transform: translate(10vw, 80vh) rotate(-15deg) scale(0.9); opacity: 1; }
   25% { transform: translate(70vw, 20vh) rotate(25deg) scale(1.1); opacity: 1; }
-  50% { transform: translate(30vw, 70vh) rotate(-35deg) scale(1); opacity: 0.9; }
+  50% { transform: translate(30vw, 70vh) rotate(-35deg) scale(1); opacity: 1; }
   75% { transform: translate(90vw, 40vh) rotate(10deg) scale(1.2); opacity: 1; }
+  99% { opacity: 1; }
   100% { transform: translate(0vw, 10vh) rotate(340deg) scale(0.8); opacity: 0; }
 }
 
 @keyframes moveSnake2 {
-  0% { transform: translate(80vw, 10vh) rotate(20deg) scale(0.9); opacity: 0.9; } /* Increased start opacity */
+  0% { transform: translate(80vw, 10vh) rotate(20deg) scale(1); opacity: 1; }
   25% { transform: translate(20vw, 60vh) rotate(-30deg) scale(1); opacity: 1; }
-  50% { transform: translate(75vw, 30vh) rotate(40deg) scale(1.1); opacity: 0.9; }
+  50% { transform: translate(75vw, 30vh) rotate(40deg) scale(1.1); opacity: 1; }
   75% { transform: translate(10vw, 90vh) rotate(-15deg) scale(1); opacity: 1; }
+  99% { opacity: 1; }
   100% { transform: translate(100vw, 50vh) rotate(350deg) scale(0.9); opacity: 0; }
 }
-    
-
     
