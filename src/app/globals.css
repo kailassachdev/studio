@@ -249,7 +249,7 @@
 }
 
 .snake-3 {
-  animation: moveSnake3 22s infinite ease-in-out 1.2s; /* New snake */
+  animation: moveSnake3 22s infinite ease-in-out 1.2s;
 }
 
 
@@ -387,4 +387,5 @@
   
 
     
+
 
