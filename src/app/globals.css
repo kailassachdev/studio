@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,15 +77,11 @@
     @apply border-border;
   }
   html {
-    /* Explicitly set the background for the html element to the theme's background color */
-    /* This ensures the very base of the page is dark if variables are working. */
     background-color: hsl(var(--background));
   }
   body {
-    /* Ensure body itself is transparent so InteractiveBackground (a child of body) can show its gradient */
-    background-color: transparent;
+    background-color: transparent; /* Body is transparent to let InteractiveBackground show */
     @apply text-foreground;
-    /* font-family is handled by next/font in layout.tsx */
   }
 }
 
@@ -115,32 +112,41 @@
 
 /* Twinkling star animation */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.7; transform: scale(1); } /* Increased base opacity and scale */
-  50% { opacity: 1.0; transform: scale(1.4); } /* Increased peak opacity and scale */
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1.0; transform: scale(1.2); }
 }
 
 .interactive-bg-element::before,
 .interactive-bg-element::after {
   content: '';
   position: absolute;
-  border-radius: 50%;
-  background-color: hsl(var(--accent) / 0.95); /* Using accent color with higher alpha */
-  animation: twinkle 5s infinite ease-in-out; /* Slightly faster animation */
+  width: 1px; /* Base pseudo-element size, actual stars by box-shadow */
+  height: 1px;
+  background-color: transparent; /* Pseudo-element itself is transparent */
+  border-radius: 50%; /* For shadow shapes if needed */
+  animation: twinkle 7s infinite ease-in-out;
   will-change: opacity, transform;
 }
 
 .interactive-bg-element::before {
-  width: 6px; /* Increased size */
-  height: 6px; /* Increased size */
-  top: 20%;
+  top: 15%;
   left: 10%;
   animation-delay: 0s;
+  /* Multiple stars using box-shadow: offset-x offset-y blur spread color */
+  box-shadow:
+    0 0 0 2px hsl(var(--accent) / 0.85),       /* Star 1 (at pseudo-element origin) */
+    25vw 10vh 0 1px hsl(var(--accent) / 0.7),  /* Star 2 */
+    -10vw 30vh 0 2px hsl(var(--accent) / 0.9), /* Star 3 */
+    5vw -15vh 0 1px hsl(var(--accent) / 0.75); /* Star 4 */
 }
 
 .interactive-bg-element::after {
-  width: 5px; /* Increased size */
-  height: 5px; /* Increased size */
-  top: 70%;
-  left: 90%;
-  animation-delay: 2.5s; /* Stagger animation */
+  top: 60%;
+  left: 85%;
+  animation-delay: 3.5s; /* Stagger animation */
+  box-shadow:
+    0 0 0 2px hsl(var(--accent) / 0.8),       /* Star 1 */
+    -20vw -15vh 0 1px hsl(var(--accent) / 0.9), /* Star 2 */
+    10vw 20vh 0 2px hsl(var(--accent) / 0.75), /* Star 3 */
+    -5vw 5vh 0 1px hsl(var(--accent) / 0.85);  /* Star 4 */
 }

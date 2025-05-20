@@ -51,21 +51,19 @@ export default function InteractiveBackground() {
   }
 
   // Style for the gradient background
-  // The first color stop uses var(--background) which should be the dark theme color.
-  // Subsequent colors are dynamic or from the theme, with increased alpha for visibility.
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
       hsla(var(--background), 1.0), /* Explicit opaque base dark theme color */
-      hsl(${dynamicHue.toFixed(0)}, 100%, 60%, 0.8),  /* Dynamic color, increased lightness and alpha */
-      hsla(var(--primary), 0.6), /* Primary color with increased alpha */
-      hsla(var(--accent), 0.55))`, /* Accent color with increased alpha */
+      hsl(${dynamicHue.toFixed(0)}, 100%, 70%, 0.9),  /* Dynamic color, increased lightness and alpha */
+      hsla(var(--primary), 0.8), /* Primary color with increased alpha */
+      hsla(var(--accent), 0.75))`, /* Accent color with increased alpha */
     backgroundSize: '400% 400%',
     animation: 'subtleGradientShift 30s ease infinite',
   };
 
   return (
     <div
-      className="fixed inset-0 -z-10 interactive-bg-element" // z-index is -10. html background is now set.
+      className="fixed inset-0 -z-10 interactive-bg-element"
       style={gradientStyle}
       aria-hidden="true"
     />
