@@ -21,14 +21,14 @@ export default function InteractiveBackground() {
       const clientHeight = document.documentElement.clientHeight;
 
       const scrollMax = scrollHeight - clientHeight;
-      const scrollableDistance = Math.max(1, scrollMax);
+      const scrollableDistance = Math.max(1, scrollMax); // Avoid division by zero if scrollMax is 0
       const scrollFraction = window.scrollY / scrollableDistance;
 
       // Calculate new hue
-      const baseSecondaryHue = 33;
-      const hueShiftRange = 120;
+      const baseSecondaryHue = 33; // Starting HSL hue for secondary
+      const hueShiftRange = 120; // How much the hue will shift over the full scroll
       let newHue = baseSecondaryHue + scrollFraction * hueShiftRange;
-      newHue = ((newHue % 360) + 360) % 360;
+      newHue = ((newHue % 360) + 360) % 360; // Ensure hue is within 0-360
       setDynamicHue(newHue);
 
       // Calculate new angle for the gradient
@@ -39,7 +39,7 @@ export default function InteractiveBackground() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    handleScroll(); // Initial call to set values
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -47,22 +47,25 @@ export default function InteractiveBackground() {
   }, [isMounted]);
 
   if (!isMounted) {
-    return null;
+    return null; // Or a fallback static background
   }
 
+  // Style for the gradient background
+  // The first color stop uses var(--background) which should be the dark theme color.
+  // Subsequent colors are dynamic or from the theme, with increased alpha for visibility.
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
-      hsla(var(--background), 1.0), /* Explicit opaque base */
-      hsl(${dynamicHue.toFixed(0)}, 100%, 50%, 0.6),  /* Dynamic color, increased lightness and alpha */
-      hsla(var(--primary), 0.35), /* Primary color with increased alpha */
-      hsla(var(--accent), 0.3))`, /* Accent color with increased alpha */
+      hsla(var(--background), 1.0), /* Explicit opaque base dark theme color */
+      hsl(${dynamicHue.toFixed(0)}, 100%, 50%, 0.7),  /* Dynamic color, increased lightness and alpha */
+      hsla(var(--primary), 0.45), /* Primary color with increased alpha */
+      hsla(var(--accent), 0.4))`, /* Accent color with increased alpha */
     backgroundSize: '400% 400%',
     animation: 'subtleGradientShift 30s ease infinite',
   };
 
   return (
     <div
-      className="fixed inset-0 -z-10 interactive-bg-element"
+      className="fixed inset-0 -z-10 interactive-bg-element" // z-index is -10. html background is now set.
       style={gradientStyle}
       aria-hidden="true"
     />
