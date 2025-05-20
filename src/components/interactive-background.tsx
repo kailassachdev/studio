@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 
 export default function InteractiveBackground() {
   const [isMounted, setIsMounted] = useState(false);
-  // Start a bit more orange and shift towards red/deeper orange.
   const [dynamicHue, setDynamicHue] = useState(35); 
   const [dynamicAngle, setDynamicAngle] = useState(270);
 
@@ -23,14 +22,14 @@ export default function InteractiveBackground() {
       const scrollableDistance = Math.max(1, scrollMax);
       const scrollFraction = window.scrollY / scrollableDistance;
 
-      const baseHue = 35; // Orange
-      const hueShiftAmount = -30; // Shift towards red (e.g., 35 to 5)
+      const baseHue = 35; 
+      const hueShiftAmount = -30; 
       let newHue = baseHue + scrollFraction * hueShiftAmount;
       newHue = ((newHue % 360) + 360) % 360;
       setDynamicHue(newHue);
 
       const baseAngle = 270;
-      const angleShiftRange = 60; // Increased angle shift
+      const angleShiftRange = 60; 
       const newAngle = baseAngle + scrollFraction * angleShiftRange;
       setDynamicAngle(newAngle);
     };
@@ -50,11 +49,11 @@ export default function InteractiveBackground() {
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
       hsla(var(--background), 1.0),
-      hsla(${dynamicHue.toFixed(0)}, 100%, 55%, 0.85), /* More opaque dynamic color */
-      hsla(var(--primary), 0.85), /* More opaque primary */
-      hsla(15, 100%, 50%, 0.75))`, /* More opaque explicit orange/red */
+      hsla(${dynamicHue.toFixed(0)}, 100%, 55%, 0.95), 
+      hsla(var(--primary), 0.9), 
+      hsla(15, 100%, 50%, 0.85))`,
     backgroundSize: '400% 400%',
-    animation: 'subtleGradientShift 25s ease infinite', /* Slightly faster animation */
+    animation: 'subtleGradientShift 25s ease infinite',
   };
 
   return (
@@ -65,6 +64,9 @@ export default function InteractiveBackground() {
     >
       <div className="flaming-snake snake-1"></div>
       <div className="flaming-snake snake-2"></div>
+      <div className="floating-cube cube-1"></div>
+      <div className="floating-cube cube-2"></div>
+      <div className="floating-cube cube-3"></div>
     </div>
   );
 }
