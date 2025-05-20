@@ -19,9 +19,8 @@ const ACCENT_H = 51; // Using the H value from the accent color for the base of 
 
 export default function InteractiveBackground() {
   const [isMounted, setIsMounted] = useState(false);
-  // Initialize scrollBaseColor with the starting dark background color
   const [scrollBaseColor, setScrollBaseColor] = useState(`hsla(${BG_H}, ${BG_S}%, ${BG_L}%, 1.0)`);
-  const [dynamicHue, setDynamicHue] = useState(ACCENT_H); // Start with accent hue
+  const [dynamicHue, setDynamicHue] = useState(ACCENT_H);
   const [dynamicAngle, setDynamicAngle] = useState(270);
 
   useEffect(() => {
@@ -35,49 +34,45 @@ export default function InteractiveBackground() {
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = document.documentElement.clientHeight;
       const scrollMax = scrollHeight - clientHeight;
-      const scrollableDistance = Math.max(1, scrollMax); // Avoid division by zero
-      const scrollFraction = Math.min(1, Math.max(0, window.scrollY / scrollableDistance)); // Clamp between 0 and 1
+      const scrollableDistance = Math.max(1, scrollMax);
+      const scrollFraction = Math.min(1, Math.max(0, window.scrollY / scrollableDistance));
 
-      // Interpolate base background color (black to red)
       const interp_H = BG_H + scrollFraction * (PRIMARY_H - BG_H);
       const interp_S = BG_S + scrollFraction * (PRIMARY_S - BG_S);
       const interp_L = BG_L + scrollFraction * (PRIMARY_L - BG_L);
       setScrollBaseColor(`hsla(${interp_H.toFixed(0)}, ${interp_S.toFixed(0)}%, ${interp_L.toFixed(0)}%, 1.0)`);
 
-      // Interpolate accent hue for the shimmer effect
-      const baseAccentHue = ACCENT_H; // Start with theme's accent color's hue
-      const hueShiftAmount = -60; // Shift hue more significantly for a noticeable change
+      const baseAccentHue = ACCENT_H;
+      const hueShiftAmount = -90; // Increased shift for more noticeable change
       let newAccentHue = baseAccentHue + scrollFraction * hueShiftAmount;
-      newAccentHue = ((newAccentHue % 360) + 360) % 360; // Ensure positive hue value
+      newAccentHue = ((newAccentHue % 360) + 360) % 360;
       setDynamicHue(newAccentHue);
 
-      // Interpolate gradient angle
-      const baseAngle = 270; // Initial angle
-      const angleShiftRange = 90; // Total change in angle over scroll distance
+      const baseAngle = 270;
+      const angleShiftRange = 120; // Increased angle shift
       const newAngle = baseAngle + scrollFraction * angleShiftRange;
       setDynamicAngle(newAngle);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call to set values based on current scroll position
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMounted]); // Re-run effect if isMounted changes
+  }, [isMounted]);
 
   if (!isMounted) {
-    return null; // Or a fallback static background
+    return null;
   }
 
-  // Simplified gradient. The black-to-red transition is handled by scrollBaseColor.
-  // The dynamicHue provides a secondary color that also shifts with scroll.
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
-      ${scrollBaseColor}, /* This color transitions from dark to red based on scroll */
-      hsla(${dynamicHue.toFixed(0)}, 90%, 55%, 0.75))`, /* Accent shimmer, also scroll-driven */
-    backgroundSize: '400% 400%', // For the subtleGradientShift animation
-    animation: 'subtleGradientShift 25s ease infinite', // Animates background-position
+      ${scrollBaseColor}, /* Dark to Red scroll-driven base */
+      hsla(${dynamicHue.toFixed(0)}, 95%, 60%, 0.85) /* Accent shimmer, more opaque */
+    )`,
+    backgroundSize: '400% 400%',
+    animation: 'subtleGradientShift 25s ease infinite',
   };
 
   return (
@@ -88,9 +83,12 @@ export default function InteractiveBackground() {
     >
       <div className="flaming-snake snake-1"></div>
       <div className="flaming-snake snake-2"></div>
+      <div className="flaming-snake snake-3"></div>
       <div className="floating-cube cube-1"></div>
       <div className="floating-cube cube-2"></div>
       <div className="floating-cube cube-3"></div>
+      <div className="floating-cube cube-4"></div>
+      <div className="floating-cube cube-5"></div>
     </div>
   );
 }

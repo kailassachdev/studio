@@ -112,27 +112,27 @@
 
 /* Twinkling star animation */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.8; transform: scale(1); } 
-  50% { opacity: 1.0; transform: scale(1.2); } 
+  0%, 100% { opacity: 0.7; transform: scale(1); } 
+  50% { opacity: 1.0; transform: scale(1.25); } 
 }
 
 /* Flicker and Rise animation for "embers" */
 @keyframes flickerRise {
   0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.5);
+    transform: translateY(25px) scale(0.4);
   }
   20% {
     opacity: 1.0; 
-    transform: translateY(0px) scale(1.3);
+    transform: translateY(0px) scale(1.35);
   }
   80% {
     opacity: 0.9;
-    transform: translateY(-100px) scale(0.9);
+    transform: translateY(-110px) scale(0.85);
   }
   100% {
     opacity: 0;
-    transform: translateY(-120px) scale(0.3);
+    transform: translateY(-130px) scale(0.25);
   }
 }
 
@@ -158,8 +158,8 @@
   left: 5%;
   animation: twinkle 4.5s infinite ease-in-out; 
   box-shadow:
-    /* Original stars, slightly brightened and more numerous */
-    0 0 0 1px hsl(var(--accent) / 0.95), /* Base star */
+    /* Significantly increased number of stars */
+    0 0 0 1px hsl(var(--accent) / 0.95), 
     15vw 10vh 0 1px hsl(var(--accent) / 0.85), -10vw 20vh 0 2px hsl(var(--accent) / 1.0),
     5vw -10vh 0 1px hsl(var(--accent) / 0.9), 25vw 5vh 0 2px hsl(var(--accent) / 0.75),
     -20vw -15vh 0 1px hsl(var(--accent) / 0.95), 30vw 40vh 0 2px hsl(var(--accent) / 0.9),
@@ -177,7 +177,17 @@
     -18vw -22vh 0 2px hsl(var(--accent) / 0.9), 40vw 65vh 0 1px hsl(var(--accent) / 0.88),
     -50vw 22vh 0 2px hsl(var(--accent) / 0.98), 12vw 75vh 0 1px hsl(var(--accent) / 0.82),
     -22vw 5vh 0 2px hsl(var(--accent) / 0.9), 37vw 10vh 0 1px hsl(var(--accent) / 0.98),
-    -3vw -40vh 0 2px hsl(var(--accent) / 0.8);
+    -3vw -40vh 0 2px hsl(var(--accent) / 0.8),
+    /* Additional stars */
+    3vw 3vh 0 1px hsl(var(--accent) / 0.9), 20vw 15vh 0 2px hsl(var(--accent) / 0.8),
+    -15vw 28vh 0 1px hsl(var(--accent) / 0.95), 8vw -18vh 0 2px hsl(var(--accent) / 0.7),
+    28vw 12vh 0 1px hsl(var(--accent) / 0.88), -28vw -20vh 0 2px hsl(var(--accent) / 0.9),
+    35vw 48vh 0 1px hsl(var(--accent) / 0.82), 52vw -8vh 0 2px hsl(var(--accent) / 0.9),
+    -42vw 35vh 0 1px hsl(var(--accent) / 0.98), 58vw 55vh 0 2px hsl(var(--accent) / 0.8),
+    -32vw -35vh 0 1px hsl(var(--accent) / 0.9), 68vw 18vh 0 2px hsl(var(--accent) / 0.75),
+    75vw -28vh 0 1px hsl(var(--accent) / 0.92), 18vw 68vh 0 2px hsl(var(--accent) / 0.85),
+    -12vw 78vh 0 1px hsl(var(--accent) / 0.88), 88vw 38vh 0 2px hsl(var(--accent) / 0.9),
+    95vw 65vh 0 1px hsl(var(--accent) / 0.8), 12vw 88vh 0 2px hsl(var(--accent) / 0.78);
 }
 
 .interactive-bg-element::after { /* Embers */
@@ -185,8 +195,8 @@
   left: 90%;
   animation: flickerRise 3.8s infinite ease-in-out 0.15s; 
   box-shadow:
-    /* Original embers, brightened and more numerous */
-    0 0 0 2px hsl(30 100% 55% / 1.0), /* Base ember - more opaque */
+    /* Significantly increased number of embers */
+    0 0 0 2px hsl(30 100% 55% / 1.0), 
     -10vw -10vh 0 2px hsl(10 100% 55% / 0.9), 15vw 10vh 0 3px hsl(40 100% 60% / 1.0),
     -20vw 5vh 0 2px hsl(0 90% 60% / 0.85), 10vw -20vh 0 3px hsl(25 100% 55% / 0.9),
     20vw 30vh 0 2px hsl(45 100% 60% / 1.0), -30vw 20vh 0 3px hsl(35 100% 50% / 0.95),
@@ -198,7 +208,16 @@
     13vw 20vh 0 3px hsl(48 100% 58% / 0.9), -23vw 65vh 0 2px hsl(8 100% 52% / 1.0),
     42vw -12vh 0 3px hsl(38 100% 57% / 0.85), -7vw 33vh 0 2px hsl(26 100% 56% / 0.9),
     17vw -28vh 0 3px hsl(43 100% 54% / 0.98), -28vw 53vh 0 2px hsl(12 100% 50% / 1.0),
-    50vw 12vh 0 3px hsl(30 100% 55% / 0.9);
+    50vw 12vh 0 3px hsl(30 100% 55% / 0.9),
+    /* Additional embers */
+    -12vw -15vh 0 2px hsl(12 100% 52% / 0.9), 18vw 18vh 0 3px hsl(42 100% 58% / 0.95),
+    -25vw 8vh 0 2px hsl(3 88% 58% / 0.8), 12vw -25vh 0 3px hsl(28 100% 52% / 0.88),
+    23vw 35vh 0 2px hsl(48 100% 58% / 0.98), -33vw 25vh 0 3px hsl(38 100% 48% / 0.9),
+    38vw -15vh 0 2px hsl(18 100% 48% / 0.8), -8vw 55vh 0 3px hsl(23 100% 50% / 0.98),
+    58vw 8vh 0 2px hsl(8 100% 55% / 0.75), -40vw -28vh 0 3px hsl(45 100% 50% / 0.9),
+    10vw 65vh 0 2px hsl(52 100% 55% / 0.98), -53vw 45vh 0 3px hsl(30 100% 52% / 0.8),
+    30vw 75vh 0 2px hsl(20 100% 48% / 0.9), -18vw 85vh 0 3px hsl(35 100% 55% / 0.88),
+    63vw 38vh 0 2px hsl(10 100% 50% / 0.75), -5vw -8vh 0 2px hsl(25 100% 52% / 0.9);
 }
 
 
@@ -229,6 +248,11 @@
   animation: moveSnake2 25s infinite ease-in-out 2.5s;
 }
 
+.snake-3 {
+  animation: moveSnake3 22s infinite ease-in-out 1.2s; /* New snake */
+}
+
+
 @keyframes moveSnake1 {
   0% { transform: translate(10vw, 80vh) rotate(-45deg) scale(0.9); opacity: 1; }
   12.5% { transform: translate(30vw, 60vh) rotate(30deg) scale(1.0); opacity: 1; }
@@ -253,6 +277,19 @@
   87.5% { transform: translate(30vw, 85vh) rotate(-130deg) scale(1.1); opacity: 1; }
   99% { transform: translate(5vw, 95vh) rotate(-150deg) scale(0.9); opacity: 1; }
   100% { transform: translate(0vw, 90vh) rotate(-160deg) scale(0.85); opacity: 0; }
+}
+
+@keyframes moveSnake3 {
+  0% { transform: translate(5vw, 5vh) rotate(20deg) scale(0.95); opacity: 1; }
+  12.5% { transform: translate(25vw, 40vh) rotate(-50deg) scale(1.05); opacity: 1; }
+  25% { transform: translate(50vw, 10vh) rotate(70deg) scale(1.1); opacity: 1; }
+  37.5% { transform: translate(75vw, 60vh) rotate(-30deg) scale(1.0); opacity: 1; }
+  50% { transform: translate(90vw, 20vh) rotate(45deg) scale(0.9); opacity: 1; }
+  62.5% { transform: translate(60vw, 90vh) rotate(-60deg) scale(1.0); opacity: 1; }
+  75% { transform: translate(30vw, 50vh) rotate(80deg) scale(1.15); opacity: 1; }
+  87.5% { transform: translate(10vw, 70vh) rotate(-10deg) scale(1.0); opacity: 1; }
+  99% { transform: translate(40vw, 5vh) rotate(25deg) scale(0.9); opacity: 1; }
+  100% { transform: translate(35vw, 0vh) rotate(15deg) scale(0.85); opacity: 0; }
 }
 
 /* Floating Cube Styles */
@@ -285,25 +322,37 @@
   animation: tumbleCube 12s infinite linear 0.5s;
 }
 
+.cube-4 { /* New cube */
+  top: 30%;
+  left: 85%;
+  animation: tumbleCube 16s infinite linear 1.5s;
+}
+
+.cube-5 { /* New cube */
+  top: 60%;
+  left: 10%;
+  animation: tumbleCube 14s infinite linear 2s;
+}
+
 @keyframes tumbleCube {
   0% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+    transform: translateX(0px) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
     opacity: 0.5;
   }
   25% {
-    transform: rotateX(90deg) rotateY(90deg) rotateZ(45deg) scale(1.05);
+    transform: translateX(30px) translateY(-20px) rotateX(90deg) rotateY(90deg) rotateZ(45deg) scale(1.05);
     opacity: 0.55;
   }
   50% {
-    transform: rotateX(180deg) rotateY(180deg) rotateZ(90deg) scale(1.1);
+    transform: translateX(-15px) translateY(35px) rotateX(180deg) rotateY(180deg) rotateZ(90deg) scale(1.1);
     opacity: 0.6;
   }
   75% {
-    transform: rotateX(270deg) rotateY(270deg) rotateZ(135deg) scale(1.05);
+    transform: translateX(25px) translateY(-30px) rotateX(270deg) rotateY(270deg) rotateZ(135deg) scale(1.05);
     opacity: 0.55;
   }
   100% {
-    transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg) scale(1);
+    transform: translateX(0px) translateY(0px) rotateX(360deg) rotateY(360deg) rotateZ(180deg) scale(1);
     opacity: 0.5;
   }
 }
