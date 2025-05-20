@@ -62,7 +62,7 @@ export default function InteractiveBackground() {
 
   return (
     <div
-      className="fixed inset-0 -z-10"
+      className="fixed inset-0 -z-10 interactive-bg-element" // Added 'interactive-bg-element' class
       style={gradientStyle}
       aria-hidden="true"
     />
