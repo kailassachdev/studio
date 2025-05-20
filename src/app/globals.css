@@ -112,8 +112,8 @@
 
 /* Twinkling star animation */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.8; transform: scale(1); } 
-  50% { opacity: 1.0; transform: scale(1.3); } 
+  0%, 100% { opacity: 0.7; transform: scale(1); } 
+  50% { opacity: 1.0; transform: scale(1.2); } 
 }
 
 /* Flicker and Rise animation for "embers" */
@@ -249,16 +249,16 @@
   100% { transform: translate(0vw, 90vh) rotate(-160deg) scale(0.85); opacity: 0; }
 }
 
-/* Floating Cube Styles - Diagnostic */
+/* Floating Cube Styles */
 .floating-cube {
   position: absolute;
-  width: 80px !important; /* Diagnostic: Large size */
-  height: 80px !important; /* Diagnostic: Large size */
-  background-color: lime !important; /* Diagnostic: Bright solid color */
-  z-index: 2 !important; /* Above snakes */
+  width: 40px; 
+  height: 40px; 
+  background-color: hsla(var(--accent), 0.25); 
+  border: 1px solid hsla(var(--accent), 0.5);
+  z-index: 2; 
   will-change: transform, opacity;
-  opacity: 1 !important; /* Diagnostic: Fully opaque */
-  border: none !important; /* Diagnostic: No border */
+  opacity: 0.7; 
 }
 
 .cube-1 {
@@ -281,24 +281,24 @@
 
 @keyframes tumbleCube {
   0% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); /* Diagnostic: Simple start */
-    opacity: 1; /* Diagnostic: Fully opaque start */
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+    opacity: 0.7;
   }
   25% {
-    transform: rotateX(90deg) rotateY(90deg) rotateZ(45deg) scale(1);
-    opacity: 1;
+    transform: rotateX(90deg) rotateY(90deg) rotateZ(45deg) scale(1.05);
+    opacity: 0.75;
   }
   50% {
-    transform: rotateX(180deg) rotateY(180deg) rotateZ(90deg) scale(1);
-    opacity: 1;
+    transform: rotateX(180deg) rotateY(180deg) rotateZ(90deg) scale(1.1);
+    opacity: 0.8;
   }
   75% {
-    transform: rotateX(270deg) rotateY(270deg) rotateZ(135deg) scale(1);
-    opacity: 1;
+    transform: rotateX(270deg) rotateY(270deg) rotateZ(135deg) scale(1.05);
+    opacity: 0.75;
   }
   100% {
     transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg) scale(1);
-    opacity: 1; /* Diagnostic: Stay opaque */
+    opacity: 0.7;
   }
 }
   
