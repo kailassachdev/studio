@@ -136,6 +136,12 @@
   }
 }
 
+.interactive-bg-element {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: opacity, transform;
+}
+
 .interactive-bg-element::before,
 .interactive-bg-element::after {
   content: '';
