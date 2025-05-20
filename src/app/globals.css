@@ -112,27 +112,27 @@
 
 /* Twinkling star animation */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.1); }
+  0%, 100% { opacity: 0.6; transform: scale(1); } /* Increased base opacity */
+  50% { opacity: 1.0; transform: scale(1.15); } /* Increased max opacity and scale */
 }
 
 /* Flicker and Rise animation for "embers" */
 @keyframes flickerRise {
   0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.5);
+    transform: translateY(25px) scale(0.4); /* Start slightly higher and smaller */
   }
   20% {
-    opacity: 0.8; /* More opaque to be visible */
-    transform: translateY(0px) scale(1);
+    opacity: 0.9; /* More opaque */
+    transform: translateY(0px) scale(1.1); /* Slightly larger flicker */
   }
   80% {
-    opacity: 0.6;
-    transform: translateY(-60px) scale(0.8);
+    opacity: 0.7;
+    transform: translateY(-70px) scale(0.7); /* Rise higher */
   }
   100% {
     opacity: 0;
-    transform: translateY(-80px) scale(0.3);
+    transform: translateY(-90px) scale(0.2);
   }
 }
 
@@ -140,37 +140,107 @@
 .interactive-bg-element::after {
   content: '';
   position: absolute;
-  width: 1px; /* Base pseudo-element size, actual elements by box-shadow */
+  width: 1px; 
   height: 1px;
-  background-color: transparent; /* Pseudo-element itself is transparent */
+  background-color: transparent;
   border-radius: 50%;
   will-change: opacity, transform;
 }
 
-.interactive-bg-element::before {
+.interactive-bg-element::before { /* Stars */
   top: 15%;
   left: 10%;
-  /* Stars - use twinkle animation */
   animation: twinkle 7s infinite ease-in-out;
   box-shadow:
-    0 0 0 2px hsl(var(--accent) / 0.8),
-    25vw 10vh 0 1px hsl(var(--accent) / 0.7),
-    -10vw 30vh 0 2px hsl(var(--accent) / 0.9),
-    5vw -15vh 0 1px hsl(var(--accent) / 0.75),
-    18vw 5vh 0 2px hsl(var(--accent) / 0.6),
-    -25vw -10vh 0 1px hsl(var(--accent) / 0.85);
+    /* Existing stars increased */
+    0 0 0 2px hsl(var(--accent) / 0.95), /* Brighter */
+    25vw 10vh 0 1px hsl(var(--accent) / 0.85),
+    -10vw 30vh 0 2px hsl(var(--accent) / 1.0), /* Brighter */
+    5vw -15vh 0 2px hsl(var(--accent) / 0.9), /* Larger */
+    18vw 5vh 0 3px hsl(var(--accent) / 0.75), /* Larger */
+    -25vw -10vh 0 1px hsl(var(--accent) / 0.95),
+    /* New stars */
+    40vw 60vh 0 2px hsl(var(--accent) / 0.8),
+    -30vw 45vh 0 2px hsl(var(--accent) / 0.85),
+    50vw -5vh 0 1px hsl(var(--accent) / 0.95),
+    -15vw -25vh 0 2px hsl(var(--accent) / 0.9),
+    35vw 20vh 0 1px hsl(var(--accent) / 0.75),
+    -5vw 55vh 0 3px hsl(var(--accent) / 1.0), /* Larger & Brighter */
+    70vw 80vh 0 2px hsl(var(--accent) / 0.8),
+    -40vw 70vh 0 1px hsl(var(--accent) / 0.9),
+    60vw -20vh 0 2px hsl(var(--accent) / 0.85),
+    -50vw 0vh 0 3px hsl(var(--accent) / 0.95); /* Larger & Brighter */
 }
 
-.interactive-bg-element::after {
+.interactive-bg-element::after { /* Embers */
   top: 60%;
   left: 85%;
-  /* Embers - use flickerRise animation */
-  animation: flickerRise 5.5s infinite ease-in-out 0.5s; /* Stagger start */
+  animation: flickerRise 5.5s infinite ease-in-out 0.5s;
   box-shadow:
-    0 0 0 2px hsl(30 100% 50% / 0.75),      /* Orange ember */
-    -10vw -10vh 0 1px hsl(10 100% 50% / 0.7),/* Red ember */
-    15vw 15vh 0 2px hsl(40 100% 50% / 0.8), /* Yellow-Orange ember */
-    -20vw 5vh 0 1px hsl(0 90% 55% / 0.65),   /* Deeper Red ember */
-    5vw -20vh 0 2px hsl(25 100% 50% / 0.7),  /* Orange ember */
-    20vw 25vh 0 1px hsl(45 100% 55% / 0.85); /* Bright Yellow-Orange ember */
+    /* Existing embers increased */
+    0 0 0 3px hsl(30 100% 55% / 0.9),      /* Brighter, slightly larger */
+    -10vw -10vh 0 2px hsl(10 100% 55% / 0.85),/* Brighter */
+    15vw 15vh 0 4px hsl(40 100% 55% / 0.95), /* Larger & Brighter */
+    -20vw 5vh 0 2px hsl(0 90% 60% / 0.8),   /* Brighter */
+    5vw -20vh 0 3px hsl(25 100% 55% / 0.85),  /* Brighter */
+    20vw 25vh 0 3px hsl(45 100% 60% / 1.0), /* Larger & Brighter */
+    /* New embers */
+    -35vw 30vh 0 3px hsl(35 100% 50% / 0.85),
+    25vw -15vh 0 2px hsl(15 100% 50% / 0.8),
+    -5vw 40vh 0 4px hsl(20 100% 52% / 0.95), /* Larger & Brighter */
+    45vw 0vh 0 2px hsl(5 100% 58% / 0.75),
+    -25vw -20vh 0 3px hsl(42 100% 53% / 0.9),
+    10vw 50vh 0 3px hsl(50 100% 57% / 0.95), /* Larger & Brighter */
+    -45vw 60vh 0 2px hsl(28 100% 55% / 0.8),
+    30vw 70vh 0 4px hsl(18 100% 50% / 0.9), /* Larger & Brighter */
+    -15vw 80vh 0 3px hsl(32 100% 58% / 0.88),
+    50vw 40vh 0 2px hsl(8 100% 53% / 0.78);
+}
+
+/* Flaming Snake Styles */
+.flaming-snake {
+  position: absolute;
+  width: 180px; /* Slightly longer */
+  height: 8px; /* Slightly thicker */
+  border-radius: 4px; /* Less rounded for a more "streak" like appearance */
+  opacity: 0;
+  will-change: transform, opacity;
+  background: linear-gradient(90deg, 
+    hsla(var(--accent), 0.95) 0%, /* Bright yellow start */
+    hsla(var(--primary) / 0.85) 50%, /* Reddish middle */
+    hsla(var(--primary) / 0.5) 75%, /* Fading red */
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 10px 4px hsla(var(--accent), 0.6), /* Inner yellow glow */
+    0 0 18px 8px hsla(var(--primary) / 0.4), /* Outer red glow */
+    0 0 25px 12px hsla(30, 100%, 50%, 0.2); /* Faint orange aura */
+}
+
+.snake-1 {
+  animation: moveSnake1 22s infinite ease-in-out;
+}
+
+.snake-2 {
+  animation: moveSnake2 28s infinite ease-in-out 3s; /* Staggered start */
+}
+
+@keyframes moveSnake1 {
+  0% { transform: translate(-20vw, 90vh) rotate(-20deg) scale(0.7); opacity: 0; }
+  10% { opacity: 0.8; }
+  25% { transform: translate(30vw, 50vh) rotate(20deg) scale(1); }
+  50% { transform: translate(80vw, 15vh) rotate(-30deg) scale(1.2); opacity: 0.9; }
+  75% { transform: translate(40vw, 60vh) rotate(40deg) scale(0.9); }
+  90% { opacity: 0.8; }
+  100% { transform: translate(-20vw, 90vh) rotate(340deg) scale(0.7); opacity: 0; }
+}
+
+@keyframes moveSnake2 {
+  0% { transform: translate(120vw, 20vh) rotate(15deg) scale(0.8); opacity: 0; }
+  10% { opacity: 0.7; }
+  25% { transform: translate(70vw, 70vh) rotate(-25deg) scale(1.1); }
+  50% { transform: translate(20vw, 30vh) rotate(35deg) scale(1); opacity: 0.85; }
+  75% { transform: translate(50vw, 80vh) rotate(-10deg) scale(0.9); }
+  90% { opacity: 0.7; }
+  100% { transform: translate(120vw, 20vh) rotate(-345deg) scale(0.8); opacity: 0; }
 }
