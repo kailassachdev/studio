@@ -140,7 +140,7 @@
 .interactive-bg-element::after {
   content: '';
   position: absolute;
-  width: 1px; 
+  width: 1px;
   height: 1px;
   background-color: transparent;
   border-radius: 50%;
@@ -211,21 +211,22 @@
 /* Flaming Snake Styles */
 .flaming-snake {
   position: absolute;
-  width: 180px; 
-  height: 8px; 
-  border-radius: 4px; 
-  opacity: 0; /* Base opacity, animation will override */
+  z-index: 1; /* Ensure snakes are above parent's gradient */
+  width: 180px;
+  height: 8px;
+  border-radius: 4px;
+  opacity: 0.6; /* Default non-zero opacity */
   will-change: transform, opacity;
-  background: linear-gradient(90deg, 
-    hsla(var(--accent), 0.95) 0%, 
-    hsla(var(--primary) / 0.85) 50%, 
-    hsla(var(--primary) / 0.5) 75%, 
+  background: linear-gradient(90deg,
+    hsla(var(--accent), 0.95) 0%,
+    hsla(var(--primary) / 0.85) 50%,
+    hsla(var(--primary) / 0.5) 75%,
     transparent 100%
   );
-  box-shadow: 
-    0 0 10px 4px hsla(var(--accent), 0.6), 
-    0 0 18px 8px hsla(var(--primary) / 0.4), 
-    0 0 25px 12px hsla(30, 100%, 50%, 0.2); 
+  box-shadow:
+    0 0 10px 4px hsla(var(--accent), 0.6),
+    0 0 18px 8px hsla(var(--primary) / 0.4),
+    0 0 25px 12px hsla(30, 100%, 50%, 0.2);
 }
 
 .snake-1 {
@@ -256,3 +257,5 @@
   100% { transform: translate(120vw, 20vh) rotate(-345deg) scale(0.8); opacity: 0; }
 }
 
+
+    
