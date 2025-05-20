@@ -50,19 +50,19 @@ export default function InteractiveBackground() {
     return null; 
   }
 
-  const gradientStyle = {
-    background: `linear-gradient(${dynamicAngle.toFixed(0)}deg, 
+  const gradientStyle: React.CSSProperties = {
+    backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg, 
       hsl(var(--background)), 
-      hsl(${dynamicHue.toFixed(0)}, 100%, 40% / 0.3),  /* Dynamic secondary color hue */
-      hsl(var(--primary) / 0.2), 
-      hsl(var(--accent) / 0.1))`,
+      hsl(${dynamicHue.toFixed(0)}, 100%, 40%, 0.3),  /* Dynamic secondary color hue, alpha adjusted */
+      hsla(var(--primary), 0.2), /* Primary color with alpha */
+      hsla(var(--accent), 0.1))`, /* Accent color with alpha */
     backgroundSize: '400% 400%',
     animation: 'subtleGradientShift 30s ease infinite', 
   };
 
   return (
     <div
-      className="fixed inset-0 -z-10 interactive-bg-element" // Added 'interactive-bg-element' class
+      className="fixed inset-0 -z-10 interactive-bg-element" 
       style={gradientStyle}
       aria-hidden="true"
     />
