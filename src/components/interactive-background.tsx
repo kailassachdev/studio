@@ -6,7 +6,9 @@ import { useEffect, useState } from 'react';
 export default function InteractiveBackground() {
   const [isMounted, setIsMounted] = useState(false);
   // Initialize with the base hue of the --secondary color (33 from globals.css)
-  const [dynamicHue, setDynamicHue] = useState(33);
+  // Let's try a hue that can shift towards reds/oranges for the "fire" theme.
+  // Starting around orange (e.g., 30-40) and shifting towards red or deeper orange.
+  const [dynamicHue, setDynamicHue] = useState(35); // Start a bit more orange
   const [dynamicAngle, setDynamicAngle] = useState(270); // Initial angle for the gradient
 
   useEffect(() => {
@@ -24,10 +26,11 @@ export default function InteractiveBackground() {
       const scrollableDistance = Math.max(1, scrollMax); // Avoid division by zero if scrollMax is 0
       const scrollFraction = window.scrollY / scrollableDistance;
 
-      // Calculate new hue
-      const baseSecondaryHue = 33; // Starting HSL hue for secondary
-      const hueShiftRange = 120; // How much the hue will shift over the full scroll
-      let newHue = baseSecondaryHue + scrollFraction * hueShiftRange;
+      // Calculate new hue: Start at 35 (orange) and shift towards red (e.g., 0 or 360) or deeper orange.
+      // Let's make it shift downwards towards red.
+      const baseHue = 35;
+      const hueShiftAmount = -35; // Shift by -35, so it goes from 35 towards 0 (red)
+      let newHue = baseHue + scrollFraction * hueShiftAmount;
       newHue = ((newHue % 360) + 360) % 360; // Ensure hue is within 0-360
       setDynamicHue(newHue);
 
@@ -54,9 +57,9 @@ export default function InteractiveBackground() {
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
       hsla(var(--background), 1.0), /* Explicit opaque base dark theme color */
-      hsl(${dynamicHue.toFixed(0)}, 100%, 70%, 0.9),  /* Dynamic color, increased lightness and alpha */
-      hsla(var(--primary), 0.8), /* Primary color with increased alpha */
-      hsla(var(--accent), 0.75))`, /* Accent color with increased alpha */
+      hsla(${dynamicHue.toFixed(0)}, 100%, 60%, 0.7),  /* Dynamic color, more towards orange/red, more opaque */
+      hsla(var(--primary), 0.8), /* Primary color (current deep red) */
+      hsla(15, 100%, 50%, 0.6))`, /* Added a more explicit orange/red tone */
     backgroundSize: '400% 400%',
     animation: 'subtleGradientShift 30s ease infinite',
   };
