@@ -76,7 +76,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    /* Removed @apply bg-background; */
+    @apply text-foreground;
     /* font-family is handled by next/font in layout.tsx */
   }
 }
@@ -108,8 +109,8 @@
 
 /* Twinkling star animation */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.1; transform: scale(0.7); }
-  50% { opacity: 0.6; transform: scale(1.1); }
+  0%, 100% { opacity: 0.3; transform: scale(0.8); } /* Increased base opacity and scale */
+  50% { opacity: 0.9; transform: scale(1.2); } /* Increased peak opacity and scale */
 }
 
 .interactive-bg-element::before,
@@ -117,22 +118,22 @@
   content: '';
   position: absolute;
   border-radius: 50%;
-  background-color: hsla(var(--foreground), 0.4); /* Using foreground color with alpha */
+  background-color: hsl(var(--accent) / 0.7); /* Using accent color with higher alpha for more pop */
   animation: twinkle 7s infinite ease-in-out;
   will-change: opacity, transform; /* Performance hint for animations */
 }
 
 .interactive-bg-element::before {
-  width: 3px;
-  height: 3px;
+  width: 4px; /* Increased size */
+  height: 4px; /* Increased size */
   top: 25%;
   left: 15%;
   animation-delay: 0s;
 }
 
 .interactive-bg-element::after {
-  width: 2px;
-  height: 2px;
+  width: 3px; /* Increased size */
+  height: 3px; /* Increased size */
   top: 65%;
   left: 85%;
   animation-delay: 3.5s; /* Stagger animation */
