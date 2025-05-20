@@ -231,13 +231,13 @@
   opacity: 1; 
   will-change: transform, opacity;
   background: linear-gradient(90deg,
-    hsl(10, 100%, 55%) 0%, 
-    hsl(30, 100%, 55%) 50%, 
-    hsl(50, 100%, 55%) 100% 
+    hsl(var(--accent)) 0%, /* Bright Yellow */
+    hsl(var(--card)) 50%,   /* Dark Orange */
+    hsl(var(--primary)) 100% /* Deep Red */
   );
   box-shadow:
-    0 0 10px 4px hsl(30, 100%, 50% / 0.8), 
-    0 0 20px 8px hsl(50, 100%, 50% / 0.5);  
+    0 0 10px 4px hsl(var(--card) / 0.8), /* Dark Orange glow */
+    0 0 20px 8px hsl(var(--accent) / 0.5);  /* Yellow wider glow */
 }
 
 .snake-1 {
@@ -299,9 +299,9 @@
   height: 40px; 
   background-color: hsl(var(--accent)); 
   border: 1px solid hsl(var(--accent-foreground));
+  opacity: 0.5;
   z-index: 2; 
   will-change: transform, opacity;
-  opacity: 0.5; 
 }
 
 .cube-1 {
@@ -356,6 +356,35 @@
     opacity: 0.5;
   }
 }
+
+/* Animated Fire Text Gradient */
+.text-fire-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--accent)), /* Bright Yellow */
+    hsl(var(--card)), /* Dark Orange */
+    hsl(var(--primary)), /* Deep Red */
+    hsl(var(--card)), /* Dark Orange */
+    hsl(var(--accent)) /* Bright Yellow */
+  );
+  background-size: 250% auto; /* Increased size for smoother animation */
+  animation: animateFireText 4s linear infinite;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes animateFireText {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -150% center; /* Adjusted for the 250% background size */
+  }
+}
   
 
     
+
