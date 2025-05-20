@@ -4,21 +4,25 @@
 import { useEffect, useState } from 'react';
 
 // HSL values from your globals.css
-// --background: 220 20% 7%;
+// --background: 220 20% 7%; (Dark Blue-Gray)
 const BG_H = 220;
 const BG_S = 20;
 const BG_L = 7;
 
-// --primary: 348 83% 47%;
+// --primary: 348 83% 47%; (Deep Red)
 const PRIMARY_H = 348;
 const PRIMARY_S = 83;
 const PRIMARY_L = 47;
 
+// --accent: 51 100% 50%; (Bright Yellow for initial dynamicHue)
+const ACCENT_H = 51; // Using the H value from the accent color for the base of dynamicHue
+
 export default function InteractiveBackground() {
   const [isMounted, setIsMounted] = useState(false);
-  const [dynamicHue, setDynamicHue] = useState(35);
-  const [dynamicAngle, setDynamicAngle] = useState(270);
+  // Initialize scrollBaseColor with the starting dark background color
   const [scrollBaseColor, setScrollBaseColor] = useState(`hsla(${BG_H}, ${BG_S}%, ${BG_L}%, 1.0)`);
+  const [dynamicHue, setDynamicHue] = useState(ACCENT_H); // Start with accent hue
+  const [dynamicAngle, setDynamicAngle] = useState(270);
 
   useEffect(() => {
     setIsMounted(true);
@@ -34,46 +38,46 @@ export default function InteractiveBackground() {
       const scrollableDistance = Math.max(1, scrollMax); // Avoid division by zero
       const scrollFraction = Math.min(1, Math.max(0, window.scrollY / scrollableDistance)); // Clamp between 0 and 1
 
-      // Interpolate base background color
+      // Interpolate base background color (black to red)
       const interp_H = BG_H + scrollFraction * (PRIMARY_H - BG_H);
       const interp_S = BG_S + scrollFraction * (PRIMARY_S - BG_S);
       const interp_L = BG_L + scrollFraction * (PRIMARY_L - BG_L);
       setScrollBaseColor(`hsla(${interp_H.toFixed(0)}, ${interp_S.toFixed(0)}%, ${interp_L.toFixed(0)}%, 1.0)`);
 
-      // Existing dynamic hue for the accent shimmer
-      const baseAccentHue = 35; // Initial orange/yellow for the shifting accent
-      const hueShiftAmount = -30; // Shifts towards greenish/cyan or magenta/purple
+      // Interpolate accent hue for the shimmer effect
+      const baseAccentHue = ACCENT_H; // Start with theme's accent color's hue
+      const hueShiftAmount = -60; // Shift hue more significantly for a noticeable change
       let newAccentHue = baseAccentHue + scrollFraction * hueShiftAmount;
       newAccentHue = ((newAccentHue % 360) + 360) % 360; // Ensure positive hue value
       setDynamicHue(newAccentHue);
 
-      // Existing dynamic angle for gradient rotation
-      const baseAngle = 270;
-      const angleShiftRange = 60; // How much the angle shifts
+      // Interpolate gradient angle
+      const baseAngle = 270; // Initial angle
+      const angleShiftRange = 90; // Total change in angle over scroll distance
       const newAngle = baseAngle + scrollFraction * angleShiftRange;
       setDynamicAngle(newAngle);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call to set values
+    handleScroll(); // Initial call to set values based on current scroll position
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMounted]);
+  }, [isMounted]); // Re-run effect if isMounted changes
 
   if (!isMounted) {
-    return null;
+    return null; // Or a fallback static background
   }
 
+  // Simplified gradient. The black-to-red transition is handled by scrollBaseColor.
+  // The dynamicHue provides a secondary color that also shifts with scroll.
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
-      ${scrollBaseColor}, /* Dynamically transitions from dark to red */
-      hsla(${dynamicHue.toFixed(0)}, 100%, 60%, 0.9), /* Adjusted accent shimmer */
-      hsla(${PRIMARY_H}, ${PRIMARY_S}%, ${PRIMARY_L}%, 0.85), /* Theme primary red, slightly more opaque */
-      hsla(25, 100%, 55%, 0.8))`, /* Another fiery color, slightly more opaque */
-    backgroundSize: '400% 400%',
-    animation: 'subtleGradientShift 25s ease infinite',
+      ${scrollBaseColor}, /* This color transitions from dark to red based on scroll */
+      hsla(${dynamicHue.toFixed(0)}, 90%, 55%, 0.75))`, /* Accent shimmer, also scroll-driven */
+    backgroundSize: '400% 400%', // For the subtleGradientShift animation
+    animation: 'subtleGradientShift 25s ease infinite', // Animates background-position
   };
 
   return (
