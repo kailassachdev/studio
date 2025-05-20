@@ -56,9 +56,9 @@ export default function InteractiveBackground() {
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
       hsla(var(--background), 1.0), /* Explicit opaque base dark theme color */
-      hsl(${dynamicHue.toFixed(0)}, 100%, 50%, 0.7),  /* Dynamic color, increased lightness and alpha */
-      hsla(var(--primary), 0.45), /* Primary color with increased alpha */
-      hsla(var(--accent), 0.4))`, /* Accent color with increased alpha */
+      hsl(${dynamicHue.toFixed(0)}, 100%, 60%, 0.8),  /* Dynamic color, increased lightness and alpha */
+      hsla(var(--primary), 0.6), /* Primary color with increased alpha */
+      hsla(var(--accent), 0.55))`, /* Accent color with increased alpha */
     backgroundSize: '400% 400%',
     animation: 'subtleGradientShift 30s ease infinite',
   };
