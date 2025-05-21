@@ -56,6 +56,7 @@ export default function AboutSection() {
                 alt="Kailas Sachdev"
                 layout="fill"
                 objectFit="cover"
+                unoptimized={true}
               />
             </div>
           </div>
