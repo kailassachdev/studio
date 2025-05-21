@@ -2,10 +2,10 @@
 "use client";
 
 import { useState } from 'react';
-import Image from 'next/image'; // Added import
+import Image from 'next/image';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog"; // Removed DialogDescription as it's not used
 import { ExternalLink, Github, Eye } from 'lucide-react';
 
 interface PortfolioItem {
@@ -14,8 +14,7 @@ interface PortfolioItem {
   description: string;
   tags: string[];
   longDescription: string;
-  imageUrl?: string; // Added
-  dataAiHint?: string; // Added
+  imageUrl?: string;
   liveLink?: string;
   repoLink?: string;
   dates?: string;
@@ -29,8 +28,7 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["OpenCV", "TensorFlow"],
     longDescription: "Developed an AI system using OpenCV and TensorFlow for object detection, specifically focusing on personal safety equipment analysis in various environments.",
     dates: "Feb 2023 - Mar 2023",
-    imageUrl: "https://placehold.co/640x360.png",
-    dataAiHint: "safety gear",
+    imageUrl: "https://images.unsplash.com/photo-1496745109441-36ea45fed379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc0Nzg0MTk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
     id: "2",
@@ -39,8 +37,7 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Java", "DSA"],
     longDescription: "Created a comprehensive library management system focusing on efficiency and searchability. The system was designed using core Java principles and Data Structures & Algorithms (DSA) concepts for optimal performance.",
     dates: "Nov 2023",
-    imageUrl: "https://placehold.co/640x360.png",
-    dataAiHint: "library books",
+    imageUrl: "https://images.unsplash.com/photo-1579370318443-8da816457e3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsaWJyYXJ5JTIwYm9va3N8ZW58MHx8fHwxNzQ3ODQxOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
     id: "3",
@@ -49,8 +46,7 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["OpenCV", "ML", "DL"],
     longDescription: "This project involved training a deep learning model with OpenCV to recognize static Indian Sign Language (ISL) signs, enabling real-time gesture translation to improve accessibility.",
     dates: "Dec 2024 - Mar 2025",
-    imageUrl: "https://placehold.co/640x360.png",
-    dataAiHint: "hand signs",
+    imageUrl: "https://images.unsplash.com/photo-1504729963497-f7ac838a2a36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxoYW5kJTIwc2lnbnN8ZW58MHx8fHwxNzQ3ODQxOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   },
    {
     id: "4",
@@ -59,8 +55,7 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Computer Vision", "PyTorch"],
     longDescription: "Developed a waste image classifier leveraging machine learning and computer vision algorithms with PyTorch. The system aims to promote environmental sustainability by automating garbage detection and classification.",
     dates: "Feb 2024 - Apr 2025",
-    imageUrl: "https://placehold.co/640x360.png",
-    dataAiHint: "waste recycling",
+    imageUrl: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXN0ZSUyMHJlY3ljbGluZ3xlbnwwfHx8fDE3NDc4NDE5Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
     id: "5",
@@ -69,8 +64,7 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Arduino", "ML", "DL"],
     longDescription: "Built an AI-powered system using Arduino, Machine Learning (ML), and Deep Learning (DL) for real-time traffic density analysis and violation detection.",
     dates: "Apr 2025 - May 2025",
-    imageUrl: "https://placehold.co/640x360.png",
-    dataAiHint: "traffic jam",
+    imageUrl: "https://images.unsplash.com/photo-1568119806199-17d9d32e3ae9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0cmFmZmljJTIwamFtfGVufDB8fHx8MTc0Nzg0MTk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
     id: "6",
@@ -79,8 +73,7 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Arduino", "Esp32"],
     longDescription: "Developed a Cansat which determines temperature and humidity at a specific altitude using Arduino and Esp32.",
     dates: "Mar 2025",
-    imageUrl: "https://placehold.co/640x360.png",
-    dataAiHint: "satellite space",
+    imageUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzYXRlbGxpdGUlMjBzcGFjZXxlbnwwfHx8fDE3NDc4NDE5Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
   },
 ];
 
@@ -111,7 +104,6 @@ export default function ProjectsSection() {
                     alt={item.title}
                     layout="fill"
                     objectFit="cover"
-                    data-ai-hint={item.dataAiHint}
                     className="transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
@@ -148,7 +140,6 @@ export default function ProjectsSection() {
                   alt={selectedItem.title}
                   layout="fill"
                   objectFit="cover"
-                  data-ai-hint={selectedItem.dataAiHint}
                 />
               </div>
             )}
@@ -157,7 +148,7 @@ export default function ProjectsSection() {
                {selectedItem.dates && <p className="text-sm text-muted-foreground -mt-1">{selectedItem.dates}</p>}
             </DialogHeader>
             <div className="py-4">
-              <p className="text-muted-foreground">{selectedItem.longDescription}</p>
+              <p className="text-muted-foreground">{selectedItem.longDescription}</p> {/* Changed from DialogDescription to p */}
               <h4 className="font-semibold mt-4 mb-2 text-card-foreground">Technologies Used:</h4>
               <div className="flex flex-wrap gap-2">
                 {selectedItem.tags.map(tag => (
