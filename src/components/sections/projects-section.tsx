@@ -59,6 +59,14 @@ const portfolioItems: PortfolioItem[] = [
     longDescription: "Currently building an AI-powered system using Arduino, Machine Learning (ML), and Deep Learning (DL) for real-time traffic density analysis and violation detection.",
     dates: "Apr 2025 - Present",
   },
+  {
+    id: "6",
+    title: "Cansat",
+    description: "Developed a Cansat which determines temp and humid at a specific altitude.",
+    tags: ["Arduino", "Esp32"],
+    longDescription: "Developed a Cansat which determines temperature and humidity at a specific altitude using Arduino and Esp32.",
+    dates: "Mar 2025",
+  },
 ];
 
 export default function ProjectsSection() {
@@ -74,7 +82,7 @@ export default function ProjectsSection() {
           {portfolioItems.map((item, index) => (
             <Card
               key={item.id}
-              className="bg-card text-card-foreground shadow-lg flex flex-col animate-fadeInUp card-glow-hover"
+              className="bg-background/80 backdrop-blur-md border border-border/30 text-foreground shadow-lg flex flex-col animate-fadeInUp card-glow-hover"
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedItem(item)}
               role="button"
@@ -86,7 +94,7 @@ export default function ProjectsSection() {
                 {item.dates && <CardDescription className="text-xs text-muted-foreground">{item.dates}</CardDescription>}
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-sm text-muted-foreground mb-4">{item.description}</p>
+                <p className="text-sm text-foreground/90 mb-4">{item.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map(tag => (
                     <span key={tag} className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-full">{tag}</span>
