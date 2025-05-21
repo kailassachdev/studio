@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -62,7 +63,7 @@ export default function AnimatedTimelineSection() {
             style={{ animationDelay: `${index * 0.2}s` }}
           >
             <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left md:order-1'}`}>
-              <Card className="bg-card text-card-foreground shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <Card className="bg-background/80 backdrop-blur-md border border-border/30 text-foreground shadow-xl hover:shadow-2xl transition-shadow duration-300">
                 <CardHeader>
                   <div className="flex items-center justify-between md:justify-normal md:gap-4">
                     <div className={`mb-2 md:mb-0 ${index % 2 === 0 ? '' : 'md:order-1'}`}>{event.icon}</div>
@@ -71,7 +72,7 @@ export default function AnimatedTimelineSection() {
                   <CardDescription className={`text-sm text-muted-foreground ${index % 2 === 0 ? '' : 'md:text-left'}`}>{event.date} - {event.category}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className={`text-card-foreground/90 ${index % 2 === 0 ? '' : 'md:text-left'}`}>{event.description}</p>
+                  <p className={`text-foreground/90 ${index % 2 === 0 ? '' : 'md:text-left'}`}>{event.description}</p>
                 </CardContent>
               </Card>
             </div>
@@ -80,23 +81,7 @@ export default function AnimatedTimelineSection() {
           </div>
         ))}
       </div>
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeInUp {
-          animation-name: fadeInUp;
-          animation-duration: 0.5s;
-          animation-fill-mode: both;
-        }
-      `}</style>
+      {/* Note: Keyframes are in globals.css, no need for style jsx here anymore if fadeInUp is global */}
     </section>
   );
 }
