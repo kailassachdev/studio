@@ -92,7 +92,7 @@ export default function SkillsSection() {
           <CardTitle className="text-4xl font-bold">Technical Skills</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 place-items-start justify-items-center">
+          <div className="flex flex-wrap justify-center items-start gap-x-4 gap-y-6">
             {skillsList.map((skill) => (
               <div
                 key={skill.name}
@@ -108,7 +108,7 @@ export default function SkillsSection() {
               >
                 <div className="skill-header flex items-center w-full transition-all duration-300 ease-in-out group-hover:mb-2">
                   {React.cloneElement(skill.icon as React.ReactElement, {
-                    className: `${(skill.icon as React.ReactElement).props.className || 'mr-2 h-5 w-5'} group-hover:text-accent shrink-0 transition-colors duration-300`
+                    className: `${(skill.icon as React.ReactElement).props.className || ''} group-hover:text-accent shrink-0 transition-colors duration-300 mr-2 h-5 w-5`
                   })}
                   <span className="skill-name font-semibold transition-all duration-300 ease-in-out group-hover:text-xl group-hover:text-primary">
                     {skill.name}
