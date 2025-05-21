@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { User, Home, User as UserIcon, Briefcase, MessageSquare, Menu, X, Linkedin, Github, Mail } from 'lucide-react'; // Changed Flame to User, added UserIcon alias
 
@@ -110,6 +110,7 @@ export default function Sidebar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-64 p-0 bg-background">
+              <SheetTitle><span className="sr-only">Main Navigation Menu</span></SheetTitle>
                <div className="flex flex-col h-full p-6 space-y-6">
                 <div className="flex items-center justify-between mb-4">
                     <Link href="#home" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
