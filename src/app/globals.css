@@ -85,13 +85,6 @@
   }
 }
 
-/* Subtle animated gradient for the interactive background */
-@keyframes subtleGradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 /* Fade in up animation */
 @keyframes fadeInUp {
   from {
@@ -139,7 +132,7 @@
 .interactive-bg-element {
   perspective: 1000px;
   transform-style: preserve-3d;
-  will-change: opacity, transform;
+  will-change: opacity, transform, background-color;
 }
 
 .interactive-bg-element::before,
