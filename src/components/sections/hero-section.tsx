@@ -1,27 +1,37 @@
+
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, FileText } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="text-center py-20 md:py-32">
-      <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
-        Kailas <span className="text-fire-gradient">Sachdev</span>
-      </h1>
-      <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-        Software Engineer skilled in designing, developing, and optimizing scalable applications. Strong in problem-solving, coding, and software architecture. Experienced with databases, algorithms, and modern frameworks. Committed to continuous learning and innovation.
-      </p>
-      <div className="space-x-4">
-        <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-          <Link href="#projects">
-            View My Projects
-          </Link>
-        </Button>
-        <Button size="lg" variant="outline" asChild className="border-accent text-accent hover:bg-accent/10">
-          <Link href="#contact">
-            Get In Touch <ArrowDown className="ml-2 h-5 w-5" />
-          </Link>
-        </Button>
+    <section id="home" className="min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-8rem)] flex flex-col justify-center py-16 md:py-24 text-left">
+      <div className="container mx-auto max-w-3xl">
+        <p className="text-lg text-primary mb-2 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+          Hello, I&apos;m
+        </p>
+        <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-4 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          Kailas Sachdev.
+        </h1>
+        <h2 className="text-3xl md:text-5xl font-semibold text-muted-foreground mb-8 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+          I build things for the web.
+        </h2>
+        <p className="text-lg text-muted-foreground mb-10 max-w-xl animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+          I&apos;m a software engineer specializing in creating robust and scalable applications.
+          Driven by curiosity and a passion for innovation and community impact.
+        </p>
+        <div className="space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 flex flex-col sm:flex-row items-start animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
+          <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto">
+            <Link href="#contact">
+              Get In Touch
+            </Link>
+          </Button>
+          {/* <Button size="lg" variant="outline" asChild className="border-primary text-primary hover:bg-primary/10 w-full sm:w-auto">
+            <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              View My Resume <FileText className="ml-2 h-5 w-5" />
+            </Link>
+          </Button> */}
+        </div>
       </div>
     </section>
   );

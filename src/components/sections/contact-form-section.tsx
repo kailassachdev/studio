@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,10 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, Send, Mail, Phone, MapPin, Linkedin, Briefcase } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
-import Link from "next/link";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(50, "Name must be 50 characters or less."),
@@ -30,38 +29,17 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 async function submitContactForm(data: ContactFormValues): Promise<{ success: boolean; message: string }> {
   console.log("Form data submitted:", data);
+  // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1500));
-  if (Math.random() > 0.2) {
+  // Simulate success/failure
+  if (Math.random() > 0.1) { // Higher success rate
     return { success: true, message: "Your message has been sent successfully! I'll be in touch soon." };
   } else {
     return { success: false, message: "Something went wrong. Please try again later." };
   }
 }
 
-const contactDetails = [
-  {
-    icon: <Mail className="h-5 w-5 text-primary" />,
-    text: "kailassachdev@gmail.com",
-    href: "mailto:kailassachdev@gmail.com",
-  },
-  {
-    icon: <Phone className="h-5 w-5 text-primary" />,
-    text: "+91 6282288093",
-    href: "tel:+916282288093",
-  },
-  {
-    icon: <Linkedin className="h-5 w-5 text-primary" />,
-    text: "linkedin.com/in/kailassachdev",
-    href: "https://linkedin.com/in/kailassachdev",
-    target: "_blank",
-  },
-  {
-    icon: <MapPin className="h-5 w-5 text-primary" />,
-    text: "Ernakulam",
-  },
-];
-
-export default function ContactFormSection() {
+export default function ContactSection() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -82,7 +60,6 @@ export default function ContactFormSection() {
         toast({
           title: "Message Sent!",
           description: result.message,
-          variant: "default",
         });
         form.reset();
       } else {
@@ -104,35 +81,16 @@ export default function ContactFormSection() {
   }
 
   return (
-    <section id="contact" className="py-16">
-      <Card className="max-w-2xl mx-auto bg-card text-card-foreground shadow-xl">
-        <CardHeader className="text-center">
-          <CardTitle className="text-4xl font-bold">Get In Touch</CardTitle>
-          <CardDescription className="text-card-foreground/80 mt-2">
-            Have a project in mind or just want to say hi? Fill out the form below or reach out directly.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="mb-8 space-y-4">
-            {contactDetails.map((detail, index) => (
-              <div key={index} className="flex items-center gap-3">
-                {detail.icon}
-                {detail.href ? (
-                  <a 
-                    href={detail.href} 
-                    target={detail.target || "_self"} 
-                    rel={detail.target ? "noopener noreferrer" : ""}
-                    className="text-card-foreground/90 hover:text-primary transition-colors"
-                  >
-                    {detail.text}
-                  </a>
-                ) : (
-                  <span className="text-card-foreground/90">{detail.text}</span>
-                )}
-              </div>
-            ))}
-          </div>
+    <section id="contact" className="py-16 md:py-24 bg-background">
+      <div className="container mx-auto max-w-2xl">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
+          Get In Touch
+        </h2>
+        <p className="text-center text-muted-foreground mb-10">
+          Have a project in mind, want to collaborate, or just say hi? <br/> My inbox is always open.
+        </p>
         
+        <div className="bg-card p-8 rounded-lg shadow-xl animate-fadeInUp" style={{animationDelay: '0.2s'}}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -140,9 +98,9 @@ export default function ContactFormSection() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-card-foreground/90">Name</FormLabel>
+                    <FormLabel className="text-card-foreground">Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your Name" {...field} className="bg-background/50 border-border focus:bg-background text-foreground placeholder:text-muted-foreground" />
+                      <Input placeholder="Your Name" {...field} className="bg-input text-foreground placeholder:text-muted-foreground" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -153,9 +111,9 @@ export default function ContactFormSection() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-card-foreground/90">Email</FormLabel>
+                    <FormLabel className="text-card-foreground">Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="your.email@example.com" {...field} className="bg-background/50 border-border focus:bg-background text-foreground placeholder:text-muted-foreground" />
+                      <Input type="email" placeholder="your.email@example.com" {...field} className="bg-input text-foreground placeholder:text-muted-foreground" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -166,31 +124,31 @@ export default function ContactFormSection() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-card-foreground/90">Message</FormLabel>
+                    <FormLabel className="text-card-foreground">Message</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Tell me about your project or inquiry..."
                         rows={5}
                         {...field}
-                        className="bg-background/50 border-border focus:bg-background text-foreground placeholder:text-muted-foreground"
+                        className="bg-input text-foreground placeholder:text-muted-foreground"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isSubmitting}>
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3" disabled={isSubmitting}>
                 {isSubmitting ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                 ) : (
-                  <Send className="mr-2 h-4 w-4" />
+                  <Send className="mr-2 h-5 w-5" />
                 )}
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </section>
   );
 }

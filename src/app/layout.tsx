@@ -1,10 +1,10 @@
+
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import InteractiveBackground from '@/components/interactive-background';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
+import Sidebar from '@/components/layout/sidebar'; // New Sidebar
+import AppFooter from '@/components/layout/footer'; // Renamed for clarity
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,13 +28,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen`}>
-        <InteractiveBackground />
-        <Header />
-        <main className="flex-grow container mx-auto px-4 py-8 relative z-10">
-          {children}
-        </main>
-        <Footer />
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+        <div className="flex min-h-screen">
+          <Sidebar />
+          <div className="flex-1 flex flex-col">
+            <main className="flex-grow py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+              {children}
+            </main>
+            <AppFooter />
+          </div>
+        </div>
         <Toaster />
       </body>
     </html>

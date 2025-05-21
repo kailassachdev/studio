@@ -1,17 +1,18 @@
+
 import HeroSection from '@/components/sections/hero-section';
-import AnimatedTimelineSection from '@/components/sections/animated-timeline-section';
-import InteractivePortfolioSection from '@/components/sections/interactive-portfolio-section';
-import ContactFormSection from '@/components/sections/contact-form-section';
-import SkillsSection from '@/components/sections/skills-section'; // Added SkillsSection
+import AboutSection from '@/components/sections/about-section'; // New
+import ProjectsSection from '@/components/sections/projects-section'; // New
+import SkillsSection from '@/components/sections/skills-section';
+import ContactSection from '@/components/sections/contact-form-section';
 
 export default function Home() {
   return (
-    <div className="space-y-24">
+    <div className="max-w-4xl mx-auto">
       <HeroSection />
-      <AnimatedTimelineSection />
-      <InteractivePortfolioSection />
-      <SkillsSection /> 
-      <ContactFormSection />
+      <AboutSection />
+      <ProjectsSection />
+      <SkillsSection />
+      <ContactSection />
     </div>
   );
 }
