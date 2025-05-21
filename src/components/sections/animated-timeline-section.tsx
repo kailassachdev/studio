@@ -2,7 +2,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Briefcase, GraduationCap, Award, Users } from "lucide-react"; // Added Users
+import { GraduationCap, Award } from "lucide-react";
 
 interface TimelineEvent {
   id: string;
@@ -52,36 +52,27 @@ export default function AnimatedTimelineSection() {
   return (
     <section id="timeline" className="py-16">
       <h2 className="text-4xl font-bold text-center mb-12">My Journey</h2>
-      <div className="relative max-w-3xl mx-auto">
-        {/* Central line */}
-        <div className="absolute top-0 h-full w-1 bg-border left-1/2 -translate-x-1/2 hidden md:block"></div>
-        
+      <div className="max-w-3xl mx-auto space-y-12">
         {timelineEvents.map((event, index) => (
-          <div 
+          <Card 
             key={event.id} 
-            className={`mb-12 flex md:items-center w-full animate-fadeInUp`}
+            className="bg-background/80 backdrop-blur-md border border-border/30 text-foreground shadow-xl hover:shadow-2xl transition-shadow duration-300 animate-fadeInUp w-full"
             style={{ animationDelay: `${index * 0.2}s` }}
           >
-            <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left md:order-1'}`}>
-              <Card className="bg-background/80 backdrop-blur-md border border-border/30 text-foreground shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <CardHeader>
-                  <div className="flex items-center justify-between md:justify-normal md:gap-4">
-                    <div className={`mb-2 md:mb-0 ${index % 2 === 0 ? '' : 'md:order-1'}`}>{event.icon}</div>
-                    <CardTitle className={`text-xl font-semibold ${index % 2 === 0 ? '' : 'md:text-left'}`}>{event.title}</CardTitle>
-                  </div>
-                  <CardDescription className={`text-sm text-muted-foreground ${index % 2 === 0 ? '' : 'md:text-left'}`}>{event.date} - {event.category}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className={`text-foreground/90 ${index % 2 === 0 ? '' : 'md:text-left'}`}>{event.description}</p>
-                </CardContent>
-              </Card>
-            </div>
-            {/* Dot on the timeline */}
-            <div className="absolute left-1/2 -translate-x-1/2 bg-primary h-4 w-4 rounded-full border-4 border-background hidden md:block"></div>
-          </div>
+            <CardHeader>
+              <div className="flex items-center gap-4">
+                <div>{event.icon}</div>
+                <CardTitle className="text-xl font-semibold">{event.title}</CardTitle>
+              </div>
+              <CardDescription className="text-sm text-muted-foreground mt-1">{event.date} - {event.category}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-foreground/90">{event.description}</p>
+            </CardContent>
+          </Card>
         ))}
       </div>
-      {/* Note: Keyframes are in globals.css, no need for style jsx here anymore if fadeInUp is global */}
     </section>
   );
 }
+
