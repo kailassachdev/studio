@@ -2,7 +2,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { GraduationCap, Award } from "lucide-react";
+import { GraduationCap } from "lucide-react"; // Removed Award as it's no longer used for a separate card
 
 interface TimelineEvent {
   id: string;
@@ -18,9 +18,9 @@ const timelineEvents: TimelineEvent[] = [
     id: "1",
     date: "2022 - 2026",
     title: "B. Tech, Computer Science & Engineering",
-    description: "Cochin University of Science and Technology, Kochi.",
+    description: "Cochin University of Science and Technology, Kochi. During my studies, I also served as President of IRES SEDS CUSAT, where I led the student chapter, organized workshops, outreach programs, and national-level space-tech events. Managed core team, built industry collaborations, increased member engagement by 60%, and actively promoted STEM awareness.",
     icon: <GraduationCap className="h-6 w-6 text-primary" />,
-    category: "Education",
+    category: "Education & Leadership",
   },
   {
     id: "2",
@@ -38,14 +38,7 @@ const timelineEvents: TimelineEvent[] = [
     icon: <GraduationCap className="h-6 w-6 text-primary" />,
     category: "Education",
   },
-  {
-    id: "4",
-    date: "Present",
-    title: "President - IRES SEDS CUSAT",
-    description: "Led student chapter, organized workshops, outreach programs, and national-level space-tech events. Managed core team, built industry collaborations, and increased member engagement by 60%. Actively promoted STEM awareness.",
-    icon: <Award className="h-6 w-6 text-primary" />,
-    category: "Leadership & Extracurricular",
-  },
+  // Removed the separate "President - IRES SEDS CUSAT" event
 ];
 
 export default function AnimatedTimelineSection() {
@@ -75,4 +68,3 @@ export default function AnimatedTimelineSection() {
     </section>
   );
 }
-
