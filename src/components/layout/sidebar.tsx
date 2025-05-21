@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Flame, Home, User, Briefcase, MessageSquare, Menu, X, Linkedin, Github, Mail } from 'lucide-react';
+import { User, Home, User as UserIcon, Briefcase, MessageSquare, Menu, X, Linkedin, Github, Mail } from 'lucide-react'; // Changed Flame to User, added UserIcon alias
 
 const navItems = [
   { href: '#home', label: 'Home', icon: Home },
-  { href: '#about', label: 'About', icon: User },
+  { href: '#about', label: 'About', icon: UserIcon },
   { href: '#projects', label: 'Projects', icon: Briefcase },
   { href: '#skills', label: 'Skills', icon: Briefcase }, // Re-using briefcase, consider a specific skills icon
   { href: '#contact', label: 'Contact', icon: MessageSquare },
@@ -85,7 +85,7 @@ export default function Sidebar() {
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex md:flex-col md:w-64 border-r border-border bg-background p-6 space-y-6 sticky top-0 h-screen">
         <Link href="#home" className="flex items-center gap-2 mb-4">
-          <Flame className="h-8 w-8 text-primary" />
+          <UserIcon className="h-8 w-8 text-primary" />
           <span className="text-xl font-bold text-foreground">Kailas Sachdev</span>
         </Link>
         <div className="flex-grow">
@@ -99,7 +99,7 @@ export default function Sidebar() {
       <div className="md:hidden sticky top-0 z-40 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link href="#home" className="flex items-center gap-2">
-            <Flame className="h-7 w-7 text-primary" />
+            <UserIcon className="h-7 w-7 text-primary" />
             <span className="text-lg font-bold text-foreground">Kailas S.</span>
           </Link>
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -113,7 +113,7 @@ export default function Sidebar() {
                <div className="flex flex-col h-full p-6 space-y-6">
                 <div className="flex items-center justify-between mb-4">
                     <Link href="#home" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Flame className="h-8 w-8 text-primary" />
+                      <UserIcon className="h-8 w-8 text-primary" />
                       <span className="text-xl font-bold text-foreground">Kailas Sachdev</span>
                     </Link>
                     <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="md:hidden">
