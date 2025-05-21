@@ -15,7 +15,7 @@ const PRIMARY_S = 83;
 const PRIMARY_L = 47;
 
 // --accent: 51 100% 50%; (Bright Yellow for initial dynamicHue)
-const ACCENT_H = 51; // Using the H value from the accent color for the base of dynamicHue
+const ACCENT_H = 51;
 
 export default function InteractiveBackground() {
   const [isMounted, setIsMounted] = useState(false);
@@ -43,13 +43,13 @@ export default function InteractiveBackground() {
       setScrollBaseColor(`hsla(${interp_H.toFixed(0)}, ${interp_S.toFixed(0)}%, ${interp_L.toFixed(0)}%, 1.0)`);
 
       const baseAccentHue = ACCENT_H;
-      const hueShiftAmount = -90; // Increased shift for more noticeable change
+      const hueShiftAmount = -90;
       let newAccentHue = baseAccentHue + scrollFraction * hueShiftAmount;
       newAccentHue = ((newAccentHue % 360) + 360) % 360;
       setDynamicHue(newAccentHue);
 
       const baseAngle = 270;
-      const angleShiftRange = 120; // Increased angle shift
+      const angleShiftRange = 120;
       const newAngle = baseAngle + scrollFraction * angleShiftRange;
       setDynamicAngle(newAngle);
     };
@@ -68,8 +68,8 @@ export default function InteractiveBackground() {
 
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${dynamicAngle.toFixed(0)}deg,
-      ${scrollBaseColor}, /* Dark to Red scroll-driven base */
-      hsla(${dynamicHue.toFixed(0)}, 95%, 60%, 0.85) /* Accent shimmer, more opaque */
+      ${scrollBaseColor},
+      hsla(${dynamicHue.toFixed(0)}, 95%, 70%, 0.95) /* Dynamic Hue Shimmer - more opaque and lighter */
     )`,
     backgroundSize: '400% 400%',
     animation: 'subtleGradientShift 25s ease infinite',
@@ -81,14 +81,7 @@ export default function InteractiveBackground() {
       style={gradientStyle}
       aria-hidden="true"
     >
-      <div className="flaming-snake snake-1"></div>
-      <div className="flaming-snake snake-2"></div>
-      <div className="flaming-snake snake-3"></div>
-      <div className="floating-cube cube-1"></div>
-      <div className="floating-cube cube-2"></div>
-      <div className="floating-cube cube-3"></div>
-      <div className="floating-cube cube-4"></div>
-      <div className="floating-cube cube-5"></div>
+      {/* Snakes and Cubes removed */}
     </div>
   );
 }
