@@ -80,12 +80,13 @@
     background-color: hsl(var(--background));
   }
   body {
-    @apply text-foreground bg-background;
+    @apply text-foreground;
+    background-color: transparent; /* Allow interactive background to show */
     min-height: 100vh;
   }
 }
 
-/* Fade in up animation - kept for sections if needed */
+/* Fade in up animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -108,14 +109,14 @@
   @apply bg-clip-text text-transparent;
   background-image: linear-gradient(
     to right,
-    hsl(var(--accent) / 0.8), /* Brighter, more opaque start for fire */
-    hsl(var(--primary) / 0.9), /* Primary color, slightly more opaque */
-    hsl(var(--card) / 0.7), /* Using card color for a darker orange/red hint */
-    hsl(var(--primary) / 0.9),
-    hsl(var(--accent) / 0.8)
+    hsl(var(--accent) / 0.9), /* Brighter start */
+    hsl(var(--primary) / 1.0), /* Primary color, fully opaque */
+    hsl(30 90% 50% / 0.9), /* Fiery orange */
+    hsl(var(--primary) / 1.0),
+    hsl(var(--accent) / 0.9)
   );
-  background-size: 250% auto; /* Increased size for smoother, slower animation */
-  animation: animateFireText 5s linear infinite alternate; /* Slower and alternates */
+  background-size: 250% auto;
+  animation: animateFireText 5s linear infinite alternate;
 }
 
 @keyframes animateFireText {
@@ -127,13 +128,17 @@
   }
 }
 
+
 @layer utilities {
   .card-glow-hover {
     @apply transition-all duration-300 ease-in-out;
   }
   .card-glow-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 15px 4px hsla(var(--primary), 0.5), /* Main glow */
-                0 0 30px 10px hsla(var(--primary), 0.25); /* Softer, wider outer glow */
+    transform: scale(1.02) translateY(-5px); /* Pop-up effect */
+    border-color: hsl(var(--primary)); /* Border color changes to primary */
+    /* Shadow for border glow + diffused shadow using primary + standard shadow */
+    box-shadow: 0 0 8px 0px hsl(var(--primary)), /* Tight glow right at the border */
+                0 0 15px 2px hsla(var(--primary), 0.6), /* Softer, diffused primary color glow */
+                0 6px 12px -3px rgba(0,0,0,0.1); /* Standard subtle drop shadow for depth */
   }
 }
