@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image'; // Added import
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
@@ -13,6 +14,8 @@ interface PortfolioItem {
   description: string;
   tags: string[];
   longDescription: string;
+  imageUrl?: string; // Added
+  dataAiHint?: string; // Added
   liveLink?: string;
   repoLink?: string;
   dates?: string;
@@ -26,6 +29,8 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["OpenCV", "TensorFlow"],
     longDescription: "Developed an AI system using OpenCV and TensorFlow for object detection, specifically focusing on personal safety equipment analysis in various environments.",
     dates: "Feb 2023 - Mar 2023",
+    imageUrl: "https://placehold.co/640x360.png",
+    dataAiHint: "safety gear",
   },
   {
     id: "2",
@@ -34,6 +39,8 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Java", "DSA"],
     longDescription: "Created a comprehensive library management system focusing on efficiency and searchability. The system was designed using core Java principles and Data Structures & Algorithms (DSA) concepts for optimal performance.",
     dates: "Nov 2023",
+    imageUrl: "https://placehold.co/640x360.png",
+    dataAiHint: "library books",
   },
   {
     id: "3",
@@ -42,6 +49,8 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["OpenCV", "ML", "DL"],
     longDescription: "This project involved training a deep learning model with OpenCV to recognize static Indian Sign Language (ISL) signs, enabling real-time gesture translation to improve accessibility.",
     dates: "Dec 2024 - Mar 2025",
+    imageUrl: "https://placehold.co/640x360.png",
+    dataAiHint: "hand signs",
   },
    {
     id: "4",
@@ -50,6 +59,8 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Computer Vision", "PyTorch"],
     longDescription: "Developed a waste image classifier leveraging machine learning and computer vision algorithms with PyTorch. The system aims to promote environmental sustainability by automating garbage detection and classification.",
     dates: "Feb 2024 - Apr 2025",
+    imageUrl: "https://placehold.co/640x360.png",
+    dataAiHint: "waste recycling",
   },
   {
     id: "5",
@@ -58,6 +69,8 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Arduino", "ML", "DL"],
     longDescription: "Built an AI-powered system using Arduino, Machine Learning (ML), and Deep Learning (DL) for real-time traffic density analysis and violation detection.",
     dates: "Apr 2025 - May 2025",
+    imageUrl: "https://placehold.co/640x360.png",
+    dataAiHint: "traffic jam",
   },
   {
     id: "6",
@@ -66,6 +79,8 @@ const portfolioItems: PortfolioItem[] = [
     tags: ["Arduino", "Esp32"],
     longDescription: "Developed a Cansat which determines temperature and humidity at a specific altitude using Arduino and Esp32.",
     dates: "Mar 2025",
+    imageUrl: "https://placehold.co/640x360.png",
+    dataAiHint: "satellite space",
   },
 ];
 
@@ -82,13 +97,25 @@ export default function ProjectsSection() {
           {portfolioItems.map((item, index) => (
             <Card
               key={item.id}
-              className="bg-background/80 backdrop-blur-md border border-border/30 text-foreground shadow-lg flex flex-col animate-fadeInUp card-glow-hover"
+              className="bg-background/80 backdrop-blur-md border border-border/30 text-foreground shadow-lg flex flex-col animate-fadeInUp card-glow-hover group"
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedItem(item)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => e.key === 'Enter' && setSelectedItem(item)}
             >
+              {item.imageUrl && (
+                <div className="relative w-full aspect-[16/9] overflow-hidden rounded-t-lg">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.title}
+                    layout="fill"
+                    objectFit="cover"
+                    data-ai-hint={item.dataAiHint}
+                    className="transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-primary">{item.title}</CardTitle>
                 {item.dates && <CardDescription className="text-xs text-muted-foreground">{item.dates}</CardDescription>}
@@ -114,6 +141,17 @@ export default function ProjectsSection() {
       {selectedItem && (
         <Dialog open={!!selectedItem} onOpenChange={(open) => !open && setSelectedItem(null)}>
           <DialogContent className="sm:max-w-[625px] bg-card text-card-foreground border-border">
+            {selectedItem.imageUrl && (
+              <div className="relative w-full aspect-[16/9] mb-4 overflow-hidden rounded-lg">
+                <Image
+                  src={selectedItem.imageUrl}
+                  alt={selectedItem.title}
+                  layout="fill"
+                  objectFit="cover"
+                  data-ai-hint={selectedItem.dataAiHint}
+                />
+              </div>
+            )}
             <DialogHeader>
               <DialogTitle className="text-2xl text-primary">{selectedItem.title}</DialogTitle>
                {selectedItem.dates && <p className="text-sm text-muted-foreground -mt-1">{selectedItem.dates}</p>}
