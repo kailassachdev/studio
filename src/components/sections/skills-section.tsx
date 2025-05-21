@@ -106,7 +106,7 @@ export default function SkillsSection() {
                            focus:shadow-2xl focus:w-72 focus:min-h-48 focus:rounded-xl focus:p-4 
                            focus:flex-col focus:items-start focus:text-foreground outline-none ring-primary focus:ring-2"
               >
-                <div className="skill-header flex items-center w-full transition-all duration-300 ease-in-out group-hover:mb-2">
+                <div className="skill-header flex items-center transition-all duration-300 ease-in-out group-hover:mb-2 group-hover:w-full">
                   {React.cloneElement(skill.icon as React.ReactElement, {
                     className: `${(skill.icon as React.ReactElement).props.className || ''} group-hover:text-accent shrink-0 transition-colors duration-300 mr-2 h-5 w-5`
                   })}
@@ -132,4 +132,3 @@ export default function SkillsSection() {
     </section>
   );
 }
-
