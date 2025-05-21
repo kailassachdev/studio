@@ -28,14 +28,31 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 async function submitContactForm(data: ContactFormValues): Promise<{ success: boolean; message: string }> {
-  console.log("Form data submitted:", data);
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1500));
-  // Simulate success/failure
-  if (Math.random() > 0.1) { // Higher success rate
-    return { success: true, message: "Your message has been sent successfully! I'll be in touch soon." };
-  } else {
-    return { success: false, message: "Something went wrong. Please try again later." };
+  try {
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      // Handles HTTP errors like 400, 500
+      return { success: false, message: result.error || `Server error: ${response.status}` };
+    }
+
+    return { success: true, message: result.message || "Your message has been sent successfully! I'll be in touch soon." };
+
+  } catch (error) {
+    console.error("Error submitting contact form:", error);
+    let errorMessage = "An unexpected error occurred while sending your message. Please try again later.";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    return { success: false, message: errorMessage };
   }
 }
 
@@ -64,7 +81,7 @@ export default function ContactSection() {
         form.reset();
       } else {
         toast({
-          title: "Error",
+          title: "Error Sending Message",
           description: result.message,
           variant: "destructive",
         });
