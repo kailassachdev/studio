@@ -29,9 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <div className="flex min-h-screen">
+        <div className="flex flex-col md:flex-row min-h-screen"> {/* Changed from "flex" to "flex flex-col md:flex-row" */}
           <Sidebar />
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col"> {/* This div will now correctly take up space in both flex directions */}
             <main className="flex-grow py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
               {children}
             </main>
