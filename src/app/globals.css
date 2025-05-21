@@ -40,6 +40,12 @@
     --chart-3: 220 70% 55%;
     --chart-4: 160 50% 40%;
     --chart-5: 190 65% 40%;
+
+    /* Colors for Hero Background Animation */
+    --hero-bg-base: 180 50% 15%; /* Dark Teal */
+    --hero-bg-circle: 180 60% 70%; /* Light Teal */
+    --hero-bg-triangle: 180 50% 25%; /* Darker Teal */
+    --hero-bg-orb: 150 60% 50%; /* Greenish */
   }
 
   .dark {
@@ -77,11 +83,10 @@
   }
   html {
     @apply scroll-smooth;
-    background-color: hsl(var(--background));
+    /* background-color: hsl(var(--background)); */ /* Let body handle overall bg */
   }
   body {
-    @apply text-foreground;
-    background-color: transparent; /* Allow interactive background to show */
+    @apply text-foreground bg-background; /* Apply base background to body */
     min-height: 100vh;
   }
 }
@@ -109,9 +114,9 @@
   @apply bg-clip-text text-transparent;
   background-image: linear-gradient(
     to right,
-    hsl(var(--accent) / 0.9), /* Brighter start */
-    hsl(var(--primary) / 1.0), /* Primary color, fully opaque */
-    hsl(30 90% 50% / 0.9), /* Fiery orange */
+    hsl(var(--accent) / 0.9), 
+    hsl(var(--primary) / 1.0),
+    hsl(30 90% 50% / 0.9), 
     hsl(var(--primary) / 1.0),
     hsl(var(--accent) / 0.9)
   );
@@ -136,9 +141,193 @@
   .card-glow-hover:hover {
     transform: scale(1.02) translateY(-5px); /* Pop-up effect */
     border-color: hsl(var(--primary)); /* Border color changes to primary */
-    /* Shadow for border glow + diffused shadow using primary + standard shadow */
-    box-shadow: 0 0 8px 0px hsl(var(--primary)), /* Tight glow right at the border */
-                0 0 15px 2px hsla(var(--primary), 0.6), /* Softer, diffused primary color glow */
-                0 6px 12px -3px rgba(0,0,0,0.1); /* Standard subtle drop shadow for depth */
+    box-shadow: 0 0 8px 0px hsl(var(--primary)), 
+                0 0 15px 2px hsla(var(--primary), 0.6),
+                0 6px 12px -3px rgba(0,0,0,0.1);
+  }
+}
+
+/* Hero Section Background Animation */
+#home {
+  background-color: hsl(var(--hero-bg-base));
+}
+
+.hero-bg-animation-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* Small Circles */
+.hero-bg-animation-container::before,
+.hero-bg-animation-container::after {
+  content: '';
+  position: absolute;
+  width: 2px; /* Base size for box-shadow generation */
+  height: 2px;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.hero-bg-animation-container::before { /* First set of circles */
+  box-shadow: 
+    5vw 10vh 0 0px hsl(var(--hero-bg-circle) / 0.5), 
+    15vw 80vh 0 1px hsl(var(--hero-bg-circle) / 0.3),
+    25vw 30vh 0 0px hsl(var(--hero-bg-circle) / 0.6),
+    35vw 90vh 0 1px hsl(var(--hero-bg-circle) / 0.4),
+    45vw 20vh 0 0px hsl(var(--hero-bg-circle) / 0.7),
+    55vw 70vh 0 1px hsl(var(--hero-bg-circle) / 0.2),
+    65vw 40vh 0 0px hsl(var(--hero-bg-circle) / 0.5),
+    75vw 10vh 0 1px hsl(var(--hero-bg-circle) / 0.3),
+    85vw 60vh 0 0px hsl(var(--hero-bg-circle) / 0.6),
+    95vw 25vh 0 1px hsl(var(--hero-bg-circle) / 0.4);
+  animation: drift 25s linear infinite alternate;
+}
+
+.hero-bg-animation-container::after { /* Second set of circles */
+  box-shadow: 
+    10vw 50vh 0 0px hsl(var(--hero-bg-circle) / 0.4), 
+    20vw 5vh 0 1px hsl(var(--hero-bg-circle) / 0.6),
+    30vw 75vh 0 0px hsl(var(--hero-bg-circle) / 0.3),
+    40vw 15vh 0 1px hsl(var(--hero-bg-circle) / 0.5),
+    50vw 85vh 0 0px hsl(var(--hero-bg-circle) / 0.7),
+    60vw 35vh 0 1px hsl(var(--hero-bg-circle) / 0.2),
+    70vw 55vh 0 0px hsl(var(--hero-bg-circle) / 0.4),
+    80vw 20vh 0 1px hsl(var(--hero-bg-circle) / 0.6),
+    90vw 95vh 0 0px hsl(var(--hero-bg-circle) / 0.3),
+    5vw 65vh 0 1px hsl(var(--hero-bg-circle) / 0.5);
+  animation: drift 30s linear infinite alternate-reverse; /* Different timing/direction */
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(5vw, -10vh) scale(1.1); /* Slight drift and scale */
+    opacity: 0.3;
+  }
+}
+
+/* Swaying Triangles */
+.bg-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0.15; /* More subtle */
+  will-change: transform;
+}
+
+.triangle-1 {
+  border-left: 70px solid transparent;
+  border-right: 70px solid transparent;
+  border-bottom: 120px solid hsl(var(--hero-bg-triangle));
+  top: 10%;
+  left: 15%;
+  animation: sway 18s ease-in-out infinite alternate;
+}
+
+.triangle-2 {
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 170px solid hsl(var(--hero-bg-triangle));
+  top: 60%;
+  left: 70%;
+  transform: rotate(45deg);
+  animation: sway 22s ease-in-out infinite alternate-reverse;
+}
+
+.triangle-3 {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 90px solid hsl(var(--hero-bg-triangle));
+  top: 30%;
+  left: 85%;
+  transform: rotate(-30deg);
+  animation: sway 20s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+  0% {
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateX(15px) rotate(5deg) scale(1.05);
+  }
+  100% {
+    transform: translateX(-10px) rotate(-3deg) scale(0.95);
+  }
+}
+
+/* Drifting Orbs */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(var(--hero-bg-orb) / 0.3) 0%, hsl(var(--hero-bg-orb) / 0) 70%);
+  filter: blur(15px); /* Softer blur for a more ethereal look */
+  will-change: transform, opacity, border-radius;
+}
+
+.orb-1 {
+  width: 150px;
+  height: 150px;
+  top: 20%;
+  left: 30%;
+  animation: driftOrb 15s ease-in-out infinite alternate, morphOrb 12s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 60%;
+  animation: driftOrb 18s ease-in-out infinite alternate-reverse, morphOrb 15s ease-in-out infinite alternate-reverse;
+}
+
+.orb-3 {
+  width: 120px;
+  height: 120px;
+  top: 75%;
+  left: 10%;
+  animation: driftOrb 16s ease-in-out infinite alternate, morphOrb 13s ease-in-out infinite alternate;
+}
+
+@keyframes driftOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-20px, 25px) scale(0.9);
+    opacity: 0.5;
+  }
+}
+
+@keyframes morphOrb {
+  0% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+  }
+  25% {
+    border-radius: 40% 60% 70% 30% / 30% 70% 40% 60%;
+  }
+  50% {
+    border-radius: 60% 40% 30% 70% / 70% 30% 60% 40%;
+  }
+  75% {
+    border-radius: 30% 70% 50% 50% / 50% 50% 70% 30%;
+  }
+  100% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
   }
 }
