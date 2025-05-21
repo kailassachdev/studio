@@ -16,7 +16,7 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { href: "https://linkedin.com/in/kailassachdev", label: "LinkedIn", icon: Linkedin },
+  { href: "https://www.linkedin.com/in/kailas-sachdev-14951327b", label: "LinkedIn", icon: Linkedin },
   { href: "mailto:kailassachdev@gmail.com", label: "Email", icon: Mail },
   // Add GitHub if Kailas has one
   // { href: "https://github.com/yourusername", label: "GitHub", icon: Github },
