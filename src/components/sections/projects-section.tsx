@@ -54,10 +54,10 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: "5",
     title: "AI Traffic Density & Violation Detection",
-    description: "Ongoing project to develop an AI system for traffic monitoring.",
+    description: "Developed an AI system for traffic monitoring.",
     tags: ["Arduino", "ML", "DL"],
-    longDescription: "Currently building an AI-powered system using Arduino, Machine Learning (ML), and Deep Learning (DL) for real-time traffic density analysis and violation detection.",
-    dates: "Apr 2025 - Present",
+    longDescription: "Built an AI-powered system using Arduino, Machine Learning (ML), and Deep Learning (DL) for real-time traffic density analysis and violation detection.",
+    dates: "Apr 2025 - May 2025",
   },
   {
     id: "6",
