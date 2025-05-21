@@ -44,7 +44,7 @@
     /* Colors for Hero Background Animation */
     --hero-bg-base: 180 50% 15%; /* Dark Teal */
     --hero-bg-circle: 180 60% 70%; /* Light Teal */
-    --hero-bg-triangle-color-ref: 180 50% 25%; /* Darker Teal - not used directly for fill anymore, using circle color */
+    --hero-bg-triangle-color-ref: 180 50% 25%; /* Darker Teal - for triangles */
     --hero-bg-orb: 150 60% 50%; /* Greenish */
   }
 
@@ -149,7 +149,6 @@
 
 /* Hero Section Background Animation */
 #home {
-  /* Removed background-color: hsl(var(--hero-bg-base)); */
   /* The hero-bg-animation-container will now effectively be the background */
 }
 
@@ -174,33 +173,33 @@
   will-change: transform, opacity;
 }
 
-.hero-bg-animation-container::before { /* First set of circles - DIAGNOSTIC BRIGHT YELLOW */
+.hero-bg-animation-container::before {
   box-shadow: 
-    5vw 10vh 0 0px hsla(60, 100%, 70%, 0.9), 
-    15vw 80vh 0 1px hsla(60, 100%, 70%, 0.8),
-    25vw 30vh 0 0px hsla(60, 100%, 70%, 0.9),
-    35vw 90vh 0 1px hsla(60, 100%, 70%, 0.8),
-    45vw 20vh 0 0px hsla(60, 100%, 70%, 0.9),
-    55vw 70vh 0 1px hsla(60, 100%, 70%, 0.7),
-    65vw 40vh 0 0px hsla(60, 100%, 70%, 0.9),
-    75vw 10vh 0 1px hsla(60, 100%, 70%, 0.8),
-    85vw 60vh 0 0px hsla(60, 100%, 70%, 0.9),
-    95vw 25vh 0 1px hsla(60, 100%, 70%, 0.8);
+    5vw 10vh 0 0px hsl(var(--hero-bg-circle) / 0.3), 
+    15vw 80vh 0 1px hsl(var(--hero-bg-circle) / 0.2),
+    25vw 30vh 0 0px hsl(var(--hero-bg-circle) / 0.3),
+    35vw 90vh 0 1px hsl(var(--hero-bg-circle) / 0.25),
+    45vw 20vh 0 0px hsl(var(--hero-bg-circle) / 0.3),
+    55vw 70vh 0 1px hsl(var(--hero-bg-circle) / 0.2),
+    65vw 40vh 0 0px hsl(var(--hero-bg-circle) / 0.3),
+    75vw 10vh 0 1px hsl(var(--hero-bg-circle) / 0.25),
+    85vw 60vh 0 0px hsl(var(--hero-bg-circle) / 0.3),
+    95vw 25vh 0 1px hsl(var(--hero-bg-circle) / 0.2);
   animation: drift 25s linear infinite alternate;
 }
 
-.hero-bg-animation-container::after { /* Second set of circles - DIAGNOSTIC BRIGHT YELLOW */
+.hero-bg-animation-container::after {
   box-shadow: 
-    10vw 50vh 0 0px hsla(60, 100%, 70%, 0.8), 
-    20vw 5vh 0 1px hsla(60, 100%, 70%, 0.9),
-    30vw 75vh 0 0px hsla(60, 100%, 70%, 0.7),
-    40vw 15vh 0 1px hsla(60, 100%, 70%, 0.9),
-    50vw 85vh 0 0px hsla(60, 100%, 70%, 0.8),
-    60vw 35vh 0 1px hsla(60, 100%, 70%, 0.7),
-    70vw 55vh 0 0px hsla(60, 100%, 70%, 0.9),
-    80vw 20vh 0 1px hsla(60, 100%, 70%, 0.8),
-    90vw 95vh 0 0px hsla(60, 100%, 70%, 0.7),
-    5vw 65vh 0 1px hsla(60, 100%, 70%, 0.9);
+    10vw 50vh 0 0px hsl(var(--hero-bg-circle) / 0.25), 
+    20vw 5vh 0 1px hsl(var(--hero-bg-circle) / 0.3),
+    30vw 75vh 0 0px hsl(var(--hero-bg-circle) / 0.2),
+    40vw 15vh 0 1px hsl(var(--hero-bg-circle) / 0.3),
+    50vw 85vh 0 0px hsl(var(--hero-bg-circle) / 0.25),
+    60vw 35vh 0 1px hsl(var(--hero-bg-circle) / 0.2),
+    70vw 55vh 0 0px hsl(var(--hero-bg-circle) / 0.3),
+    80vw 20vh 0 1px hsl(var(--hero-bg-circle) / 0.25),
+    90vw 95vh 0 0px hsl(var(--hero-bg-circle) / 0.2),
+    5vw 65vh 0 1px hsl(var(--hero-bg-circle) / 0.3);
   animation: drift 30s linear infinite alternate-reverse; /* Different timing/direction */
 }
 
@@ -229,7 +228,7 @@
 .triangle-1 {
   border-left: 70px solid transparent;
   border-right: 70px solid transparent;
-  border-bottom: 120px solid hsla(120, 100%, 50%, 0.7); /* DIAGNOSTIC BRIGHT GREEN */
+  border-bottom: 120px solid hsl(var(--hero-bg-circle) / 0.15); 
   top: 10%;
   left: 15%;
   animation: sway 18s ease-in-out infinite alternate;
@@ -238,7 +237,7 @@
 .triangle-2 {
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
-  border-bottom: 170px solid hsla(120, 100%, 50%, 0.6); /* DIAGNOSTIC BRIGHT GREEN */
+  border-bottom: 170px solid hsl(var(--hero-bg-circle) / 0.1); 
   top: 60%;
   left: 70%;
   transform: rotate(45deg);
@@ -248,7 +247,7 @@
 .triangle-3 {
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
-  border-bottom: 90px solid hsla(120, 100%, 50%, 0.8); /* DIAGNOSTIC BRIGHT GREEN */
+  border-bottom: 90px solid hsl(var(--hero-bg-circle) / 0.2); 
   top: 30%;
   left: 85%;
   transform: rotate(-30deg);
@@ -271,7 +270,7 @@
 .bg-orb {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, hsla(0, 100%, 60%, 0.7) 0%, hsla(0, 100%, 60%, 0) 70%); /* DIAGNOSTIC BRIGHT RED */
+  background: radial-gradient(circle, hsl(var(--hero-bg-orb) / 0.2) 0%, hsl(var(--hero-bg-orb) / 0) 70%);
   filter: blur(15px); 
   will-change: transform, opacity, border-radius;
 }
@@ -303,15 +302,15 @@
 @keyframes driftOrb {
   0% {
     transform: translate(0, 0) scale(1);
-    opacity: 0.6;
+    opacity: 0.4; /* Base opacity for orbs */
   }
   50% {
     transform: translate(30px, -20px) scale(1.1);
-    opacity: 0.8;
+    opacity: 0.6;
   }
   100% {
     transform: translate(-20px, 25px) scale(0.9);
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
