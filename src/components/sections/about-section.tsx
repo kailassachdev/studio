@@ -52,7 +52,7 @@ export default function AboutSection() {
           <div className="md:col-span-2 flex justify-center md:justify-start animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg border-4 border-primary">
               <Image
-                src="https://storage.googleapis.com/project-ai-labs-prd/users/B231120254632/generations/F167368007239/4e0d098b-c645-46e1-a1f0-4b60d9f856e7.png"
+                src="/images/pro.png"
                 alt="Kailas Sachdev"
                 layout="fill"
                 objectFit="cover"
