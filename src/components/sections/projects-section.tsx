@@ -74,7 +74,7 @@ export default function ProjectsSection() {
           {portfolioItems.map((item, index) => (
             <Card
               key={item.id}
-              className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col animate-fadeInUp"
+              className="bg-card text-card-foreground shadow-lg flex flex-col animate-fadeInUp card-glow-hover"
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedItem(item)}
               role="button"

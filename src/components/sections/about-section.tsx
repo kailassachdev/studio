@@ -74,7 +74,7 @@ export default function AboutSection() {
           <h3 className="text-2xl font-semibold text-foreground mb-8 text-center md:text-left animate-fadeInUp" style={{ animationDelay: '0.3s' }}>Education</h3>
           <div className="space-y-8">
             {education.map((item, index) => (
-              <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-card animate-fadeInUp" style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
+              <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-card animate-fadeInUp card-glow-hover" style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
                 <div className="flex-shrink-0 mt-1">
                   <item.icon className="h-6 w-6 text-primary" />
                 </div>
@@ -92,7 +92,7 @@ export default function AboutSection() {
           <h3 className="text-2xl font-semibold text-foreground mb-8 text-center md:text-left animate-fadeInUp" style={{ animationDelay: '0.6s' }}>Leadership & Activities</h3>
            <div className="space-y-8">
             {leadership.map((item, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 rounded-lg bg-card animate-fadeInUp" style={{ animationDelay: `${0.7 + index * 0.1}s` }}>
+              <div key={index} className="flex items-start gap-4 p-6 rounded-lg bg-card animate-fadeInUp card-glow-hover" style={{ animationDelay: `${0.7 + index * 0.1}s` }}>
                 <div className="flex-shrink-0 mt-1">
                   <item.icon className="h-6 w-6 text-primary" />
                 </div>

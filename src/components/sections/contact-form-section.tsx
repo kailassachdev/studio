@@ -90,7 +90,7 @@ export default function ContactSection() {
           Have a project in mind, want to collaborate, or just say hi? <br/> My inbox is always open.
         </p>
         
-        <div className="bg-card p-8 rounded-lg shadow-xl animate-fadeInUp" style={{animationDelay: '0.2s'}}>
+        <div className="bg-card p-8 rounded-lg shadow-xl animate-fadeInUp card-glow-hover" style={{animationDelay: '0.2s'}}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField

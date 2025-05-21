@@ -8,7 +8,7 @@ import { Cpu, Code, Database, Users, Brain, Settings, BarChartBig, Zap, GitBranc
 interface SkillCategory {
   name: string;
   icon: React.ReactNode;
-  skills: { name: string, icon?: React.ReactNode }[];
+  skills: { name: string, icon?: React.ReactNode, description?: string }[]; // Added description
 }
 
 const skillCategories: SkillCategory[] = [
@@ -83,7 +83,11 @@ export default function SkillsSection() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
-            <Card key={category.name} className="bg-card text-card-foreground shadow-lg animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
+            <Card 
+              key={category.name} 
+              className="bg-card text-card-foreground shadow-lg animate-fadeInUp card-glow-hover" 
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <CardHeader className="flex flex-row items-center gap-3 pb-4">
                 {category.icon}
                 <CardTitle className="text-xl text-primary">{category.name}</CardTitle>
