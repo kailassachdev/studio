@@ -149,7 +149,8 @@
 
 /* Hero Section Background Animation */
 #home {
-  background-color: hsl(var(--hero-bg-base));
+  /* Removed background-color: hsl(var(--hero-bg-base)); */
+  /* The hero-bg-animation-container will now effectively be the background */
 }
 
 .hero-bg-animation-container {
@@ -159,6 +160,7 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  background-color: hsl(var(--hero-bg-base)); /* Moved base color here */
 }
 
 /* Small Circles */
