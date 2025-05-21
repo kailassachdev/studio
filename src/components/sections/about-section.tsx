@@ -56,7 +56,7 @@ export default function AboutSection() {
                 alt="Kailas Sachdev"
                 layout="fill"
                 objectFit="cover"
-                data-ai-hint="professional portrait"
+                data-ai-hint="profile headshot"
               />
             </div>
           </div>
