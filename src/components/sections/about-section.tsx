@@ -15,14 +15,14 @@ const education = [
     degree: "Senior Secondary (XII), CBSE",
     institution: "The Greenhills Public School",
     years: "2021",
-    details: "Percentage: 87.00%",
+    // details: "Percentage: 87.00%", // Removed
     icon: GraduationCap,
   },
   {
     degree: "Secondary (X), CBSE",
     institution: "Mount Tabor English School",
     years: "2019",
-    details: "Percentage: 92.00%",
+    // details: "Percentage: 92.00%", // Removed
     icon: GraduationCap,
   },
 ];
