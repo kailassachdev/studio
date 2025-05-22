@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build" # Specifies the build command from your package.json
+  publish = ".next"         # The default output directory for Next.js builds
+
+# This section is crucial for Next.js sites on Netlify.
+# It ensures that Netlify uses the official Next.js plugin,
+# which handles features like API routes, server components,
+# image optimization, and correct routing.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
