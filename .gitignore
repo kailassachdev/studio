@@ -1,45 +1,52 @@
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+.pnp.js
 
-# testing
-/coverage
-
-# next.js
+# Next.js build output
 /.next/
 /out/
 
-# production
+# Production build
 /build
 
-# misc
+# Static SSR build
+/.firebase/
+
+# Test results
+/coverage
+
+# Misc
 .DS_Store
 *.pem
+*.log
+*.patch
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# Environment Variables
+.env
+.env*.local
+!.env.example
+!.env.sample
 
-# vercel
-.vercel
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
 
-# typescript
+# IntelliJ
+.idea
+
+# WebStorm
+.idea/
+*.iws
+
+# Netlify
+.netlify
+
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
-
-.genkit/*
-.env*
-
-# firebase
-firebase-debug.log
-firestore-debug.log
